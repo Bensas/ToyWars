@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IShooter
 {
     public float speed = 100.0f;
     public float rotationSpeed = 2.0f;
@@ -50,7 +50,7 @@ public class EnemyAI : MonoBehaviour
         transform.Translate(Vector3.forward * (speed * Time.deltaTime));
     }
 
-    private void Shoot() {
+    public void Shoot() {
         Debug.Log("Enemy plane is shooting");
     }
 }
