@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IShooter
 {
     public float speed = 100.0f;
     public float rotationSpeed = 2.0f;
@@ -11,6 +11,8 @@ public class EnemyAI : MonoBehaviour
     private float pitchAngle;
 
     private float rollAngle;
+
+    private static float SHOOT_THRESHOLD = 0.85f;
 
     public Transform target;
 
@@ -26,6 +28,9 @@ public class EnemyAI : MonoBehaviour
 
         // Rotate the plane towards the target
         var targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+        if (Mathf.Abs(Quaternion.Dot(transform.rotation, targetRotation)) > SHOOT_THRESHOLD) {
+            Shoot();
+        }
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
 
         // Calculate pitch angle based on the difference in altitude
@@ -43,5 +48,9 @@ public class EnemyAI : MonoBehaviour
         // Apply the rotation and movement
         transform.Rotate(pitchAngle, 0, -rollAngle);
         transform.Translate(Vector3.forward * (speed * Time.deltaTime));
+    }
+
+    public void Shoot() {
+        Debug.Log("Enemy plane is shooting");
     }
 }
