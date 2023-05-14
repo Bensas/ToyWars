@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GliderController : MonoBehaviour
+public class OldGliderController : MonoBehaviour
 {
 
     public float pitchLimits;
