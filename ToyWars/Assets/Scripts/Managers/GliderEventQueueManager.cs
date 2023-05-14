@@ -7,7 +7,7 @@ namespace Managers
 {
     public class GliderEventQueueManager : MonoBehaviour
     {
-        public GliderEventQueueManager instance;
+        public static GliderEventQueueManager instance;
         
         public Queue<ICommand> EventQueue => _eventQueue;
         private Queue<ICommand> _eventQueue = new Queue<ICommand>();
