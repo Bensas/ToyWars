@@ -24,7 +24,7 @@ namespace Entities
             _currentLifetime = LifeTime;
         }
         
-        public void Travel() => transform.Translate( transform.forward * (Time.deltaTime * Speed));
+        public void Travel() => transform.Translate( 0,0,Speed * Time.deltaTime);
 
         public void OnCollisionEnter(Collision collision)
         {

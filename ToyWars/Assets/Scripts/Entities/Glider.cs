@@ -29,12 +29,10 @@ namespace Entities
             float pitch = Input.GetAxis("Pitch") * _sensitivity;
             float yaw = Input.GetAxis("Yaw") * _sensitivity;
             
-            if(Mathf.Abs(roll) > 0.0001f || Mathf.Abs(pitch) > 0.0001f || Mathf.Abs(yaw) > 0.0001f)
-                GliderEventQueueManager.instance.AddEvent(new CmdMovement(_gliderMovementController, pitch, yaw, roll));
+            GliderEventQueueManager.instance.AddEvent(new CmdMovement(_gliderMovementController, pitch, yaw, roll));
 
             if (Input.GetAxisRaw("Fire1") > 0)
             {
-                Debug.Log("Shoooting");
                 GliderEventQueueManager.instance.AddEvent(new CmdShoot(_activeWeapon));
             }
 
