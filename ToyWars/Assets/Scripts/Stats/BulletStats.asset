@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _statValues:
     damage: 10
-    speed: 5000
-    lifeTime: 3000
+    speed: 10
+    lifeTime: 1

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TurretStats
   m_EditorClassIdentifier: 
   _statValues:
-    projectilePrefab: {fileID: 0}
-    damage: 0
-    maxProjectileCount: 0
-    shotCooldown: 0
-    reloadCooldown: 0
+    projectilePrefab: {fileID: 8785755641991019657, guid: 53c56970bbffda845b68b49d0c597b3e, type: 3}
+    damage: 10
+    maxProjectileCount: 1000
+    shotCooldown: 0.01
+    reloadCooldown: 10
