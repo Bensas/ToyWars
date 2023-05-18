@@ -1,30 +1,49 @@
 ﻿using System;
+using System.Collections.Generic;
 using Commands;
 using Controllers;
 using Managers;
 using UnityEngine;
+using Weapons;
 
 namespace Entities
 {
     public class Glider : MonoBehaviour
     {
+
+        [SerializeField] private List<Weapon> _weapons;
+        [SerializeField] private Weapon _activeWeapon; 
+        [SerializeField] private float _sensitivity = 15f;
+        
         private GliderMovementController _gliderMovementController;
 
         public void Start()
         {
             _gliderMovementController = GetComponent<GliderMovementController>();
-            
+            Cursor.visible = false;
         }
 
         void Update()
         {
-            float _roll = -Input.GetAxis("Roll");
-            float _pitch = Input.GetAxis("Pitch");
-            float _yaw = Input.GetAxis("Yaw");
+            float roll = -Input.GetAxis("Roll") * _sensitivity;
+            float pitch = Input.GetAxis("Pitch") * _sensitivity;
+            float yaw = Input.GetAxis("Yaw") * _sensitivity;
             
-            if(Mathf.Abs(_roll) > 0.0001f || Mathf.Abs(_pitch) > 0.0001f || Mathf.Abs(_yaw) > 0.0001f)
-                GliderEventQueueManager.instance.AddEvent(new CmdMovement(_gliderMovementController, _pitch, _yaw, _roll));
+            if(Mathf.Abs(roll) > 0.0001f || Mathf.Abs(pitch) > 0.0001f || Mathf.Abs(yaw) > 0.0001f)
+                GliderEventQueueManager.instance.AddEvent(new CmdMovement(_gliderMovementController, pitch, yaw, roll));
 
+            if (Input.GetAxisRaw("Fire1") > 0)
+            {
+                Debug.Log("Shoooting");
+                GliderEventQueueManager.instance.AddEvent(new CmdShoot(_activeWeapon));
+            }
+
+        }
+
+        private void ChangeWeapon(int index)
+        {
+            if (index < 0 || index >= _weapons.Count) return;
+            _activeWeapon = _weapons[index];
         }
     }
 }
