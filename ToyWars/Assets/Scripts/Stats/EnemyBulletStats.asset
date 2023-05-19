@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07e0396e4e0e47daa18e291e1ce3ca88, type: 3}
-  m_Name: EnemyTurretStats
+  m_Script: {fileID: 11500000, guid: dcada5535ba74224bf0218f866eb55a9, type: 3}
+  m_Name: EnemyBulletStats
   m_EditorClassIdentifier: 
   _statValues:
-    projectilePrefab: {fileID: 8785755641991019657, guid: 27c53f070899a0d4d827d573515cbf7c, type: 3}
-    damage: 1
-    maxProjectileCount: 500
-    shotCooldown: 0.01
-    reloadCooldown: 10
+    damage: 10
+    speed: 10
+    lifeTime: 2

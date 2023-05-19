@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   _statValues:
-    MaxLife: 100
+    MaxLife: 1000
     MovementSpeed: 1
