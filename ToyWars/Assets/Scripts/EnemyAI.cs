@@ -51,6 +51,6 @@ public class EnemyAI : MonoBehaviour, IShooter
     }
 
     public void Shoot() {
-        Debug.Log("Enemy plane is shooting");
+        //Debug.Log("Enemy plane is shooting");
     }
 }

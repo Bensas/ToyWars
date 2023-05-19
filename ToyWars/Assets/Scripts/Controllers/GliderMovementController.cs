@@ -21,9 +21,10 @@ namespace Controllers
         public void Move(float pitch, float yaw, float roll)
         {
             _rb.velocity = transform.forward * Speed;
-            _rb.AddTorque(transform.up * (yaw * Time.deltaTime));
-            _rb.AddTorque(transform.right * (pitch * Time.deltaTime));
-            _rb.AddTorque(transform.forward * (roll * Time.deltaTime));
+            transform.Rotate(pitch * Time.deltaTime, yaw * Time.deltaTime, roll * Time.deltaTime);
+            // _rb.AddTorque(transform.up * (yaw * Time.deltaTime));
+            // _rb.AddTorque(transform.right * (pitch * Time.deltaTime));
+            // _rb.AddTorque(transform.forward * (roll * Time.deltaTime));
         }
     }
 }

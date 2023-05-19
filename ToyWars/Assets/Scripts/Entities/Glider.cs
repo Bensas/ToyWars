@@ -8,7 +8,7 @@ using Weapons;
 
 namespace Entities
 {
-    public class Glider : MonoBehaviour
+    public class Glider : Actor
     {
 
         [SerializeField] private List<Weapon> _weapons;
@@ -35,13 +35,13 @@ namespace Entities
             {
                 GliderEventQueueManager.instance.AddEvent(new CmdShoot(_activeWeapon));
             }
-
         }
 
         private void ChangeWeapon(int index)
         {
             if (index < 0 || index >= _weapons.Count) return;
             _activeWeapon = _weapons[index];
+            _activeWeapon.UpdateAmmoUI();
         }
     }
 }

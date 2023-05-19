@@ -1,5 +1,6 @@
 ﻿using System;
 using Flyweight;
+using Managers;
 using Strategy;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -46,12 +47,16 @@ namespace Weapons
                 _currentShotCooldown = ShotCooldown;
                 _currentProjectileCount--;
             }
+            UpdateAmmoUI();
         }
 
         private void Reload()
         {
             _currentProjectileCount = MaxProjectileCount;
             _currentReloadCooldown = ReloadCooldown;
+            UpdateAmmoUI();
         }
+        
+        public void UpdateAmmoUI() => EventManager.instance.EventPlayerAmmoChange(_currentProjectileCount);
     }
 }
