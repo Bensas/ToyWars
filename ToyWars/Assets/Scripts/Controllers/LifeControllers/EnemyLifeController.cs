@@ -1,12 +1,10 @@
-﻿using System;
-using Managers;
-using UnityEngine;
+﻿using Managers;
 
 namespace Controllers.LifeControllers
 {
     public class EnemyLifeController : LifeController
     {
-        private void Awake()
+        private void Start()
         {
             EventManager.instance.EventEnemySpawn();
         }

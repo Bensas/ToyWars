@@ -9,7 +9,7 @@ using Managers;
 
 namespace Entities
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : Actor
     {
 
         [SerializeField] private List<Weapon> _weapons;

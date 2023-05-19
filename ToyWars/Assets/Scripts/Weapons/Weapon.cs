@@ -73,7 +73,6 @@ namespace Weapons
 
         public void UpdateReloadState(bool isReloading)
         {
-            Debug.Log($"Reloading: {isReloading}");
             _isReloading = isReloading;
             if(_ownerIsPlayer)
                 EventManager.instance.EventReloadUpdate(isReloading);

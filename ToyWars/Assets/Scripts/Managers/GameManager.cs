@@ -30,11 +30,13 @@ namespace Managers
         private void OnEnemyKill()
         {
             _currentEnemiesAlive -= 1;
+            UIManager.instance.UpdateEnemyAliveDisplay(_currentEnemiesAlive);
         }
 
         private void OnEnemySpawn()
         {
             _currentEnemiesAlive += 1;
+            UIManager.instance.UpdateEnemyAliveDisplay(_currentEnemiesAlive);
         }
         
         public int GetEnemiesAlive() => _currentEnemiesAlive;
