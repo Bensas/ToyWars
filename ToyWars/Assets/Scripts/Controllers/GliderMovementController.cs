@@ -6,9 +6,10 @@ namespace Controllers
     [RequireComponent(typeof(Rigidbody))]
     public class GliderMovementController : MonoBehaviour, IMoveable
     {
-        public float sensitivity;
-    
+        [SerializeField] private float _speed = 500f;
         private Rigidbody _rb;
+        
+        public float Speed => _speed;
     
         // Start is called before the first frame update
         void Start()
@@ -16,13 +17,14 @@ namespace Controllers
             _rb = GetComponent<Rigidbody>();
         }
 
-        public float Speed => 1;
+        
         public void Move(float pitch, float yaw, float roll)
         {
             _rb.velocity = transform.forward * Speed;
-            _rb.AddTorque(transform.up * (yaw * sensitivity));
-            _rb.AddTorque(transform.right * (pitch * sensitivity));
-            _rb.AddTorque(transform.forward * (roll * sensitivity));
+            transform.Rotate(pitch * Time.deltaTime, yaw * Time.deltaTime, roll * Time.deltaTime);
+            // _rb.AddTorque(transform.up * (yaw * Time.deltaTime));
+            // _rb.AddTorque(transform.right * (pitch * Time.deltaTime));
+            // _rb.AddTorque(transform.forward * (roll * Time.deltaTime));
         }
     }
 }
