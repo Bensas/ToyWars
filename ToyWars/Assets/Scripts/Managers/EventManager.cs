@@ -12,6 +12,8 @@ namespace Managers
         public event Action OnEnemySpawn;
         public event Action<float, float> OnPlayerHealthChange;
         public event Action<int> OnPlayerAmmoChange;
+        public event Action<bool> OnPlayerShootingUpdate;
+        public event Action<bool> OnPlayerReloadUpdate;
         
         private void Awake()
         {
@@ -24,6 +26,8 @@ namespace Managers
         public void EventEnemySpawn() => OnEnemySpawn?.Invoke();
         public void EventPlayerHealthChange(float currentHealth, float maxHealth) => OnPlayerHealthChange?.Invoke(currentHealth, maxHealth);
         public void EventPlayerAmmoChange(int currentAmmo) => OnPlayerAmmoChange?.Invoke(currentAmmo);
+        public void EventShootingUpdate(bool isShooting) => OnPlayerShootingUpdate?.Invoke(isShooting);
+        public void EventReloadUpdate(bool isReloading) => OnPlayerReloadUpdate?.Invoke(isReloading);
 
     }
 }

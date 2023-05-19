@@ -20,6 +20,9 @@ namespace Weapons
         public int MaxProjectileCount => _stats.MaxProjectileCount;
         public float ShotCooldown => _stats.ShotCooldown;
         public float ReloadCooldown => _stats.ReloadCooldown;
+
+        private bool _ownerIsPlayer = false;
+        private bool _isReloading = false;
         
         private void Start()
         {
@@ -33,6 +36,8 @@ namespace Weapons
             if (_currentShotCooldown > 0) _currentShotCooldown -= Time.deltaTime;
             if (_currentProjectileCount <= 0)
             {
+                if (!_isReloading) UpdateReloadState(true);
+                
                 if (_currentReloadCooldown > 0) _currentReloadCooldown -= Time.deltaTime;
                 else Reload();
             }
@@ -55,8 +60,25 @@ namespace Weapons
             _currentProjectileCount = MaxProjectileCount;
             _currentReloadCooldown = ReloadCooldown;
             UpdateAmmoUI();
+            UpdateReloadState(false);
         }
         
-        public void UpdateAmmoUI() => EventManager.instance.EventPlayerAmmoChange(_currentProjectileCount);
+        public void UpdateAmmoUI()
+        {
+            if(_ownerIsPlayer)
+                EventManager.instance.EventPlayerAmmoChange(_currentProjectileCount);
+        }
+
+        public bool IsReloading() => _isReloading;
+
+        public void UpdateReloadState(bool isReloading)
+        {
+            Debug.Log($"Reloading: {isReloading}");
+            _isReloading = isReloading;
+            if(_ownerIsPlayer)
+                EventManager.instance.EventReloadUpdate(isReloading);
+        }
+        
+        public void SetOwnerIsPlayer(bool isPlayer) => _ownerIsPlayer = isPlayer;
     }
 }

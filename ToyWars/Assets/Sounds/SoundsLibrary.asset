@@ -18,5 +18,6 @@ MonoBehaviour:
     bedroomMusicLoop: {fileID: 8300000, guid: 0738e3ec5839f9f4688f53c0b228e81b, type: 3}
     buttonHighlight: {fileID: 8300000, guid: ec28a379a2e3f214498576b8f8b9277f, type: 3}
     buttonClick: {fileID: 8300000, guid: 639f8a7dc224f4a41bb58994ed795b31, type: 3}
-    planeShoot: {fileID: 8300000, guid: b6b90e8fe17cd074e8e630e5143f6e5c, type: 3}
+    planeShoot: {fileID: 8300000, guid: d9419e41fe6185548bfcdbf0953533dd, type: 3}
+    planeEmpty: {fileID: 8300000, guid: 41e1ceae5939555418b0ce81d2fa6047, type: 3}
     planeFlyLoop: {fileID: 8300000, guid: b1c864922e623fe4b901325f7c50223d, type: 3}

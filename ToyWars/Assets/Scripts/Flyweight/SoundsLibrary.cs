@@ -16,7 +16,7 @@ namespace Flyweight
         
         public AudioClip PlaneShoot => _soundClips.planeShoot;
         // public AudioClip PlaneReload => _soundClips.planeReload;
-        // public AudioClip PlaneEmpty => _soundClips.planeEmpty;
+        public AudioClip PlaneEmpty => _soundClips.planeEmpty;
         public AudioClip PlaneFlyLoop => _soundClips.planeFlyLoop;
         
         
@@ -32,7 +32,7 @@ namespace Flyweight
             
             public AudioClip planeShoot;
             // public AudioClip planeReload;
-            // public AudioClip planeEmpty;
+            public AudioClip planeEmpty;
             public AudioClip planeFlyLoop;
         }
     }
