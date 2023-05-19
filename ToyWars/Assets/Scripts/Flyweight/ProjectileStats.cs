@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Flyweight
 {
@@ -10,6 +11,8 @@ namespace Flyweight
         public float Damage => _statValues.damage;
         public float Speed => _statValues.speed;
         public float LifeTime => _statValues.lifeTime;
+        public List<int> LayerMasks => _statValues.layerMasks;
+        
         
         [System.Serializable]
         public struct StatValues
@@ -17,6 +20,7 @@ namespace Flyweight
             public float damage;
             public float speed;
             public float lifeTime;
+            public List<int> layerMasks;
         }
     }
     

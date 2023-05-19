@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Managers
 {
@@ -25,12 +26,15 @@ namespace Managers
 
         private void OnGameOver(bool isVictory)
         {
+            SceneManager.LoadScene(isVictory ? "Victory" : "Defeat");
         }
 
         private void OnEnemyKill()
         {
             _currentEnemiesAlive -= 1;
             UIManager.instance.UpdateEnemyAliveDisplay(_currentEnemiesAlive);
+
+            if (_currentEnemiesAlive <= 0) EventManager.instance.EventGameOver(true);
         }
 
         private void OnEnemySpawn()

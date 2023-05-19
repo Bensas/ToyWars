@@ -28,9 +28,11 @@ namespace Entities
 
         public void OnCollisionEnter(Collision collision)
         {
-            IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
-            if (damageable != null) GliderEventQueueManager.instance.AddEvent(new CmdApplyDamage(damageable, Damage));
-
+            if (_stats.LayerMasks.Contains(collision.gameObject.layer))
+            {
+                IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+                if (damageable != null) GliderEventQueueManager.instance.AddEvent(new CmdApplyDamage(damageable, Damage));
+            }
             Destroy(this.gameObject);
         }
 
