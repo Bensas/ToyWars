@@ -1,56 +1,59 @@
-using UnityEngine;
+// using UnityEngine;
 
-public class EnemyAI : MonoBehaviour, IShooter
-{
-    public float speed = 100.0f;
-    public float rotationSpeed = 2.0f;
-    public float maxPitchAngle = 20.0f;
-    public float maxRollAngle = 45.0f;
-    public float altitudeChangeThreshold = 50.0f;
-    private float altitude;
-    private float pitchAngle;
+// public class EnemyAI : MonoBehaviour, IShooter
+// {
+//     public float speed = 100.0f;
+//     public float rotationSpeed = 2.0f;
+//     public float maxPitchAngle = 20.0f;
+//     public float maxRollAngle = 45.0f;
+//     public float altitudeChangeThreshold = 50.0f;
+//     private float altitude;
+//     private float pitchAngle;
 
-    private float rollAngle;
+//     private float rollAngle;
 
-    private static float SHOOT_THRESHOLD = 0.85f;
+//     private static float SHOOT_THRESHOLD = 0.85f;
 
-    public Transform target;
+//     public Transform target;
 
-    private void Start()
-    {
-    }
+//     [SerializeField] private Weapon _activeWeapon; 
 
-    private void Update()
-    {
-        // Get the target position and direction
-        var targetPosition = target.position;
-        var targetDirection = targetPosition - transform.position;
+//     private void Start()
+//     {
+//     }
 
-        // Rotate the plane towards the target
-        var targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-        if (Mathf.Abs(Quaternion.Dot(transform.rotation, targetRotation)) > SHOOT_THRESHOLD) {
-            Shoot();
-        }
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+//     private void Update()
+//     {
+//         // Get the target position and direction
+//         var targetPosition = target.position;
+//         var targetDirection = targetPosition - transform.position;
 
-        // Calculate pitch angle based on the difference in altitude
-        var targetAltitude = targetPosition.y;
-        var altitudeDifference = targetAltitude - altitude;
-        pitchAngle = Mathf.Clamp(altitudeDifference / altitudeChangeThreshold, -maxPitchAngle, maxPitchAngle);
+//         // Rotate the plane towards the target
+//         var targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
 
-        // Calculate roll angle based on the direction to the target
-        var localTarget = transform.InverseTransformPoint(targetPosition);
-        rollAngle = Mathf.Clamp(localTarget.x / localTarget.magnitude, -maxRollAngle, maxRollAngle);
+//         // Calculate pitch angle based on the difference in altitude
+//         var targetAltitude = targetPosition.y;
+//         var altitudeDifference = targetAltitude - altitude;
+//         pitchAngle = Mathf.Clamp(altitudeDifference / altitudeChangeThreshold, -maxPitchAngle, maxPitchAngle);
 
-        // Update the altitude
-        altitude = targetAltitude;
+//         // Calculate roll angle based on the direction to the target
+//         var localTarget = transform.InverseTransformPoint(targetPosition);
+//         rollAngle = Mathf.Clamp(localTarget.x / localTarget.magnitude, -maxRollAngle, maxRollAngle);
 
-        // Apply the rotation and movement
-        transform.Rotate(pitchAngle, 0, -rollAngle);
-        transform.Translate(Vector3.forward * (speed * Time.deltaTime));
-    }
+//         // Update the altitude
+//         altitude = targetAltitude;
 
-    public void Shoot() {
-        //Debug.Log("Enemy plane is shooting");
-    }
-}
+//         // Apply the rotation and movement
+//         GliderEventQueueManager.instance.AddEvent(new CmdMovement(_gliderMovementController, pitch, yaw, roll));
+
+//         if (Mathf.Abs(Quaternion.Dot(transform.rotation, targetRotation)) > SHOOT_THRESHOLD) {
+//             GliderEventQueueManager.instance.AddEvent(new CmdShoot(_activeWeapon));
+//         }
+//     }
+
+//     private void Shoot()
+//     {
+
+//     }
+
+// }
