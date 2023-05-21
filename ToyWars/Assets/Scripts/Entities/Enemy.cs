@@ -40,14 +40,6 @@ namespace Entities
 
         void Update()
         {
-            
-            // GliderEventQueueManager.instance.AddEvent(new CmdEnemyMovement(_enemyMovementController, pitch, yaw, roll));
-
-            if (Input.GetAxisRaw("Fire1") > 0)
-            {
-                GliderEventQueueManager.instance.AddEvent(new CmdShoot(_activeWeapon));
-            }
-            
              // Get the target position and direction
             var targetPosition = target.position;
             var targetDirection = targetPosition - transform.position;
