@@ -12,6 +12,7 @@ namespace Managers
         [SerializeField] private TMP_Text _healthDisplay;
         [SerializeField] private TMP_Text _ammoDisplay;
         [SerializeField] private TMP_Text _EnemiesAliveDisplay;
+        [SerializeField] private Image _DamageFlash;
 
         private void Awake()
         {
@@ -22,7 +23,9 @@ namespace Managers
         private void Start()
         {
             EventManager.instance.OnPlayerHealthChange += UpdateHealthDisplay;
+            EventManager.instance.OnPlayerHealthChange += ActivateDamageFlash;
             EventManager.instance.OnPlayerAmmoChange += UpdateAmmoDisplay;
+
         }
         
         public void UpdateEnemyAliveDisplay(int enemiesAlive)
@@ -33,6 +36,14 @@ namespace Managers
         private void UpdateHealthDisplay(float currentHealth, float maxHealth)
         {
             _healthDisplay.text = $"Health: {currentHealth}/{maxHealth}";
+
+        }
+
+        private void ActivateDamageFlash(float currentHealth, float maxHealth)
+        {
+            Color temp = _DamageFlash.color;
+            temp.a = 1.0f;
+            _DamageFlash.color = temp;
         }
         
         private void UpdateAmmoDisplay(int currentAmmo)
