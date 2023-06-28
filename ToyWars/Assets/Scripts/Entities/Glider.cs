@@ -21,6 +21,9 @@ namespace Entities
 
         private bool _isShooting = false;
 
+        public Light _gunLight;
+        private float gunLightPeriod = 0.1f;
+
         public void Start()
         {
             _gliderMovementController = GetComponent<GliderMovementController>();
@@ -52,7 +55,16 @@ namespace Entities
                 if(_isShooting)
                 {
                     _isShooting = false;
+                    _gunLight.intensity = 0;
                     EventManager.instance.EventShootingUpdate(false);
+                }
+            }
+
+            if (_isShooting) {
+                if (Time.unscaledTime % gunLightPeriod < gunLightPeriod/2) {
+                    _gunLight.intensity = 8.0f;
+                } else {
+                    _gunLight.intensity = 0.0f;   
                 }
             }
         }
