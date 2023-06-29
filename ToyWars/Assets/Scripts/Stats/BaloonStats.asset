@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcada5535ba74224bf0218f866eb55a9, type: 3}
-  m_Name: BulletStats
+  m_Script: {fileID: 11500000, guid: 8acc0c99e39d468a9ca5edaae7bee6da, type: 3}
+  m_Name: BaloonStats
   m_EditorClassIdentifier: 
   _statValues:
-    damage: 10
-    speed: 10
-    lifeTime: 2
-    layerMasks: 0600000009000000
+    MaxLife: 30
+    MovementSpeed: 0

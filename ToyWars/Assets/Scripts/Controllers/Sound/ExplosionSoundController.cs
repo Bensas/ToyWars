@@ -18,10 +18,11 @@ namespace Sound
         }
 
         private void AddFunctionToEventManager() {
-          EventManager.instance.OnEnemyKill += OnEnemyKill;
+          EventManager.instance.OnEnemyKill += PlayExplosionSound;
+          EventManager.instance.OnBaloonKill += PlayExplosionSound;
         }
 
-        private void OnEnemyKill()
+        private void PlayExplosionSound()
         {
             Debug.Log("Playing explosion sound");
             Play();
