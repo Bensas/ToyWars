@@ -16,4 +16,4 @@ MonoBehaviour:
     damage: 10
     speed: 10
     lifeTime: 2
-    layerMasks: 06000000
+    layerMasks: 0600000009000000

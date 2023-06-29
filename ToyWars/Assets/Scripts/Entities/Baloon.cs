@@ -7,7 +7,7 @@ using Strategy;
 
 namespace Entities
 {
-    public class Baloon : MonoBehaviour, IDamageable
+    public class Baloon : MonoBehaviour
     {
         // private BaloonMovementController _baloonMovementController;
 
@@ -33,9 +33,10 @@ namespace Entities
             
         }
 
-        public void TakeDamage(float damage)
-        {
-            health -= damage;
-        }
+        // public void TakeDamage(float damage)
+        // {
+        //     health -= damage;
+        //     Debug.Log("Baloon taking damage");
+        // }
     }
 }

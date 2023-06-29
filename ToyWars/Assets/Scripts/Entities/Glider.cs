@@ -21,15 +21,19 @@ namespace Entities
         [SerializeField] private float maxTargetDistance = 50f; 
         
         private GliderMovementController _gliderMovementController;
+        private GliderSoundController _gliderSoundController;
         private GliderRadarController _gliderRadarController;
 
         private bool _isShooting = false;
 
+        public Light _gunLight;
+        private float gunLightPeriod = 0.1f;
+
         public void Start()
         {
             _gliderMovementController = GetComponent<GliderMovementController>();
+            _gliderSoundController = GetComponent<GliderSoundController>();
             _gliderRadarController = GetComponent<GliderRadarController>();
-            
             Cursor.visible = false;
             
             ChangeWeapon(0);
@@ -64,7 +68,16 @@ namespace Entities
                 if(_isShooting)
                 {
                     _isShooting = false;
+                    _gunLight.intensity = 0;
                     EventManager.instance.EventShootingUpdate(false, _activeWeapon);
+                }
+            }
+
+            if (_isShooting) {
+                if (Time.unscaledTime % gunLightPeriod < gunLightPeriod/2) {
+                    _gunLight.intensity = 8.0f;
+                } else {
+                    _gunLight.intensity = 0.0f;   
                 }
             }
         }

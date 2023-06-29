@@ -21,3 +21,7 @@ MonoBehaviour:
     planeShoot: {fileID: 8300000, guid: d9419e41fe6185548bfcdbf0953533dd, type: 3}
     planeEmpty: {fileID: 8300000, guid: 41e1ceae5939555418b0ce81d2fa6047, type: 3}
     planeFlyLoop: {fileID: 8300000, guid: b1c864922e623fe4b901325f7c50223d, type: 3}
+    bulletHi1: {fileID: 8300000, guid: a71ebfcfe260942f49cc7ee792cb92ae, type: 3}
+    bulletHi2: {fileID: 8300000, guid: 9940728a2001846948f290a55ecf1a64, type: 3}
+    bulletHi3: {fileID: 8300000, guid: 0336d74e6f2764dd7a0260e42899e907, type: 3}
+    explosion: {fileID: 8300000, guid: 9c2d1d4b201ce4910b689a16a2c76ce7, type: 3}

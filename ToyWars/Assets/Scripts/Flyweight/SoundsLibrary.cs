@@ -18,6 +18,12 @@ namespace Flyweight
         // public AudioClip PlaneReload => _soundClips.planeReload;
         public AudioClip PlaneEmpty => _soundClips.planeEmpty;
         public AudioClip PlaneFlyLoop => _soundClips.planeFlyLoop;
+
+        public AudioClip BulletHit1 => _soundClips.bulletHi1;
+        public AudioClip BulletHit2 => _soundClips.bulletHi2;
+        public AudioClip BulletHit3 => _soundClips.bulletHi3;
+
+        public AudioClip Explosion => _soundClips.explosion;
         
         
         [System.Serializable]
@@ -34,6 +40,12 @@ namespace Flyweight
             // public AudioClip planeReload;
             public AudioClip planeEmpty;
             public AudioClip planeFlyLoop;
+
+            public AudioClip bulletHi1;
+            public AudioClip bulletHi2;
+            public AudioClip bulletHi3;
+
+            public AudioClip explosion;
         }
     }
     
