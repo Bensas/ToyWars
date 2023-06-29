@@ -1,4 +1,5 @@
 ﻿using System;
+using Entities;
 using Flyweight;
 using Managers;
 using Strategy;
@@ -14,14 +15,17 @@ namespace Weapons
         [SerializeField] protected int _currentProjectileCount;
         [SerializeField] protected float _currentShotCooldown;
         [SerializeField] protected float _currentReloadCooldown;
-        
+
         public GameObject ProjectilePrefab => _stats.ProjectilePrefab;
         public float Damage => _stats.Damage;
         public int MaxProjectileCount => _stats.MaxProjectileCount;
         public float ShotCooldown => _stats.ShotCooldown;
         public float ReloadCooldown => _stats.ReloadCooldown;
+        public AudioClip ShotSound => _stats.ShotSound;
+        public bool FireOnHold => _stats.FireOnHold;
 
         private bool _ownerIsPlayer = false;
+        protected Actor _owner;
         private bool _isReloading = false;
         
         private void Start()
@@ -30,8 +34,8 @@ namespace Weapons
             _currentReloadCooldown = ReloadCooldown;
             _currentShotCooldown = ShotCooldown;
         }
-        
-        private void Update()
+
+        protected void Update()
         {
             if (_currentShotCooldown > 0) _currentShotCooldown -= Time.deltaTime;
             if (_currentProjectileCount <= 0)
@@ -47,13 +51,19 @@ namespace Weapons
         {
             if (_currentShotCooldown <= 0 && _currentProjectileCount > 0)
             {
-                var projectile = Instantiate(ProjectilePrefab, transform.position, transform.rotation);
-                projectile.GetComponent<IProjectile>().SetOwner(this);
+                InstantiateProjectile();
                 _currentShotCooldown = ShotCooldown;
                 _currentProjectileCount--;
             }
             UpdateAmmoUI();
         }
+        
+        protected virtual GameObject InstantiateProjectile()
+        {
+            var projectile = Instantiate(ProjectilePrefab, transform.position, transform.rotation);
+            projectile.GetComponent<IProjectile>().SetOwner(this);
+            return projectile;
+        } 
 
         private void Reload()
         {
@@ -79,5 +89,6 @@ namespace Weapons
         }
         
         public void SetOwnerIsPlayer(bool isPlayer) => _ownerIsPlayer = isPlayer;
+        public virtual void SetOwner(Actor owner) => _owner = owner;
     }
 }

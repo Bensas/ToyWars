@@ -13,7 +13,7 @@ namespace Controllers.LifeControllers
         
         public float MaxLife => GetComponent<Actor>().Stats.MaxLife;
         
-        void Start()
+        protected virtual void Start()
         {
             _currentLife = MaxLife;
         }

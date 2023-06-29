@@ -12,6 +12,7 @@ namespace Flyweight
         public float Speed => _statValues.speed;
         public float LifeTime => _statValues.lifeTime;
         public List<int> LayerMasks => _statValues.layerMasks;
+        public float AngleChangingSpeed => _statValues.angleChangingSpeed;
         
         
         [System.Serializable]
@@ -21,6 +22,7 @@ namespace Flyweight
             public float speed;
             public float lifeTime;
             public List<int> layerMasks;
+            public float angleChangingSpeed;
         }
     }
     

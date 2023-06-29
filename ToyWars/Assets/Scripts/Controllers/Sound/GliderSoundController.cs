@@ -1,5 +1,6 @@
 ﻿using Flyweight;
 using Managers;
+using Strategy;
 using UnityEngine;
 
 namespace Sound
@@ -17,10 +18,21 @@ namespace Sound
             EventManager.instance.OnPlayerReloadUpdate += OnPlayerReloadUpdate;
         }
 
-        private void OnPlayerShootingUpdate(bool isShooting)
+        private void OnPlayerShootingUpdate(bool isShooting, IWeapon weapon)
         {
-            if (isShooting) Play();
-            else Stop();
+            if (isShooting)
+            {
+                if (weapon.FireOnHold)
+                {
+                    _audioSource.clip = weapon.ShotSound;
+                    Play();   
+                }
+                else
+                    _audioSource.PlayOneShot(weapon.ShotSound);
+            }
+            else 
+                if(weapon.FireOnHold)
+                    Stop();
         }
 
         private void OnPlayerReloadUpdate(bool isReloading)

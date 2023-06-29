@@ -5,8 +5,20 @@ namespace Controllers.LifeControllers
 {
     public class GliderLifeController : LifeController
     {
+        [SerializeField] private bool _invincible = false;
+        
+        protected override void Start()
+        {
+            base.Start();
+            
+            UIManager.instance.UpdateHealthDisplay(CurrentLife, MaxLife);
+        }
+    
         public override void TakeDamage(float damage)
         {
+            if(_invincible)
+                return;
+            
             base.TakeDamage(damage);
             EventManager.instance.EventPlayerHealthChange(CurrentLife, MaxLife);
         }

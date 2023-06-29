@@ -2,6 +2,6 @@
 {
     public interface IMissile : IProjectile
     {
-        // ITargetable Target { get; } TODO
+        public void SetRadar(IRadar radar);
     }
 }

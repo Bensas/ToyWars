@@ -1,9 +1,11 @@
 ﻿using Managers;
+using UnityEngine;
 
 namespace Controllers.LifeControllers
 {
     public class EnemyLifeController : LifeController
     {
+        private bool isDead = false;
         private void Start()
         {
             EventManager.instance.EventEnemySpawn();
@@ -11,8 +13,12 @@ namespace Controllers.LifeControllers
 
         protected override void Die()
         {
-            base.Die();
-            EventManager.instance.EventEnemyKill();
+            if (!isDead)
+            {
+                EventManager.instance.EventEnemyKill();
+                isDead = true;
+                base.Die();
+            }
         }
     }
 }

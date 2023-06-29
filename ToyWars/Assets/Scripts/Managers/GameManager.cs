@@ -26,7 +26,8 @@ namespace Managers
 
         private void OnGameOver(bool isVictory)
         {
-            SceneManager.LoadScene(isVictory ? "Victory" : "Defeat");
+            if (isVictory) SceneManager.LoadScene("Victory");
+            else SceneManager.LoadScene("Defeat");
         }
 
         private void OnEnemyKill()

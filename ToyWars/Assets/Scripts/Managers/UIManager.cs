@@ -30,7 +30,7 @@ namespace Managers
             _EnemiesAliveDisplay.text = $"Enemies Alive: {enemiesAlive}";
         }
         
-        private void UpdateHealthDisplay(float currentHealth, float maxHealth)
+        public void UpdateHealthDisplay(float currentHealth, float maxHealth)
         {
             _healthDisplay.text = $"Health: {currentHealth}/{maxHealth}";
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Strategy;
 using UnityEngine;
 
 namespace Managers
@@ -12,9 +13,10 @@ namespace Managers
         public event Action OnEnemySpawn;
         public event Action<float, float> OnPlayerHealthChange;
         public event Action<int> OnPlayerAmmoChange;
-        public event Action<bool> OnPlayerShootingUpdate;
+        public event Action<bool, IWeapon> OnPlayerShootingUpdate;
         public event Action<bool> OnPlayerReloadUpdate;
-        
+        public event Action<IWeapon> OnPlayerWeaponChange; 
+
         private void Awake()
         {
             if (instance != null) Destroy(this);
@@ -26,8 +28,9 @@ namespace Managers
         public void EventEnemySpawn() => OnEnemySpawn?.Invoke();
         public void EventPlayerHealthChange(float currentHealth, float maxHealth) => OnPlayerHealthChange?.Invoke(currentHealth, maxHealth);
         public void EventPlayerAmmoChange(int currentAmmo) => OnPlayerAmmoChange?.Invoke(currentAmmo);
-        public void EventShootingUpdate(bool isShooting) => OnPlayerShootingUpdate?.Invoke(isShooting);
+        public void EventShootingUpdate(bool isShooting, IWeapon weapon) => OnPlayerShootingUpdate?.Invoke(isShooting, weapon);
         public void EventReloadUpdate(bool isReloading) => OnPlayerReloadUpdate?.Invoke(isReloading);
+        public void EventWeaponChange(IWeapon weapon) => OnPlayerWeaponChange?.Invoke(weapon);
 
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1820054, g: 0.22769405, b: 0.30740482, a: 1}
+  m_IndirectSpecularColor: {r: 0.18200584, g: 0.22769475, b: 0.30740595, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Victory
+  m_text: Defeat
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a752ffe997d6f574b8e43cb03fdd105e, type: 2}
   m_sharedMaterial: {fileID: 5551079598963700199, guid: a752ffe997d6f574b8e43cb03fdd105e, type: 2}
@@ -2932,6 +2932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c954ce34612548f39b28e39f6a8eadfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _menuSoundController: {fileID: 1931428400}
 --- !u!1 &1941365744
 GameObject:
   m_ObjectHideFlags: 0

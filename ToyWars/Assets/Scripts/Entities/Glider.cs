@@ -4,27 +4,32 @@ using Commands;
 using Controllers;
 using Managers;
 using Sound;
+using Strategy;
 using UnityEngine;
 using Weapons;
 
 namespace Entities
 {
+    [RequireComponent(typeof(GliderMovementController))]
+    [RequireComponent(typeof(GliderRadarController))]
     public class Glider : Actor
     {
 
         [SerializeField] private List<Weapon> _weapons;
-        [SerializeField] private Weapon _activeWeapon; 
+        [SerializeField] private Weapon _activeWeapon;
         [SerializeField] private float _sensitivity = 15f;
+        [SerializeField] private float maxTargetDistance = 50f; 
         
         private GliderMovementController _gliderMovementController;
-        private GliderSoundController _gliderSoundController;
+        private GliderRadarController _gliderRadarController;
 
         private bool _isShooting = false;
 
         public void Start()
         {
             _gliderMovementController = GetComponent<GliderMovementController>();
-            _gliderSoundController = GetComponent<GliderSoundController>();
+            _gliderRadarController = GetComponent<GliderRadarController>();
+            
             Cursor.visible = false;
             
             ChangeWeapon(0);
@@ -38,13 +43,20 @@ namespace Entities
             
             GliderEventQueueManager.instance.AddEvent(new CmdMovement(_gliderMovementController, pitch, yaw, roll));
 
+            UpdateLockOnTarget();
+            
             if (Input.GetAxisRaw("Fire1") > 0)
             {
-                GliderEventQueueManager.instance.AddEvent(new CmdShoot(_activeWeapon));
                 if (!_isShooting)
                 {
                     _isShooting = true;
-                    EventManager.instance.EventShootingUpdate(true);
+                    EventManager.instance.EventShootingUpdate(true, _activeWeapon);
+                    GliderEventQueueManager.instance.AddEvent(new CmdShoot(_activeWeapon));
+                }
+                else
+                {
+                    if(_activeWeapon.FireOnHold)
+                        GliderEventQueueManager.instance.AddEvent(new CmdShoot(_activeWeapon));
                 }
             }
             else
@@ -52,7 +64,7 @@ namespace Entities
                 if(_isShooting)
                 {
                     _isShooting = false;
-                    EventManager.instance.EventShootingUpdate(false);
+                    EventManager.instance.EventShootingUpdate(false, _activeWeapon);
                 }
             }
         }
@@ -63,6 +75,15 @@ namespace Entities
             _activeWeapon = _weapons[index];
             _activeWeapon.UpdateAmmoUI();
             _activeWeapon.SetOwnerIsPlayer(true);
+            _activeWeapon.SetOwner(this);
+        }
+        
+        private void UpdateLockOnTarget()
+        {
+            var newTarget = _gliderRadarController.GetTargetInView(transform.forward);
+            if (_gliderRadarController.Target != newTarget) 
+                GliderEventQueueManager.instance.AddEvent(new CmdLockOn(_gliderRadarController, newTarget));
+
         }
     }
 }

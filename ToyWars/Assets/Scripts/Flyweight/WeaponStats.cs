@@ -12,7 +12,9 @@ namespace Flyweight
         public int MaxProjectileCount => _statValues.maxProjectileCount;
         public float ShotCooldown => _statValues.shotCooldown;
         public float ReloadCooldown => _statValues.reloadCooldown;
-        
+        public AudioClip ShotSound => _statValues.shotSound;
+        public bool FireOnHold => _statValues.fireOnHold;
+
         [System.Serializable]
         public struct StatValues
         {
@@ -21,6 +23,8 @@ namespace Flyweight
             public int maxProjectileCount;
             public float shotCooldown;
             public float reloadCooldown;
+            public AudioClip shotSound;
+            public bool fireOnHold;
         }
     }
 }
