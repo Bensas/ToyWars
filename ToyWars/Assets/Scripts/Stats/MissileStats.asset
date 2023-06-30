@@ -16,5 +16,5 @@ MonoBehaviour:
     damage: 50
     speed: 10
     lifeTime: 10
-    layerMasks: 06000000
+    layerMasks: 0600000009000000
     angleChangingSpeed: 15
