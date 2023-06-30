@@ -51,6 +51,8 @@ namespace Entities
             float pitch = Input.GetAxis("Pitch") * _sensitivity;
             float yaw = Input.GetAxis("Yaw") * _sensitivity;
 
+            GliderEventQueueManager.instance.AddEvent(new CmdMovement(_gliderMovementController, pitch, yaw, roll));
+            
             UpdateLockOnTarget();
 
             HandleWeaponChange();
@@ -60,8 +62,6 @@ namespace Entities
         private void HandleShooting()
         {
             _inputUtils.HandleFireInput();
-            
-            Debug.Log("Firing: " + _inputUtils.IsFiring + " - Down: " + _inputUtils.OnFiringDown + " - Up: " + _inputUtils.OnFiringUp);
 
             if (_inputUtils.OnFiringDown)
             {
