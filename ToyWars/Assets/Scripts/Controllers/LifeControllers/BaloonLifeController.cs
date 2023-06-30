@@ -8,6 +8,7 @@ namespace Controllers.LifeControllers
         public GameObject explosionPrefab;
         private void Start()
         {
+            
             EventManager.instance.EventBaloonSpawn();
         }
 

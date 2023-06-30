@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Strategy;
 using TMPro;
 using UnityEngine;
@@ -11,8 +12,7 @@ namespace Managers
     {
         public static UIManager instance;
         
-        [SerializeField] private TMP_Text _healthDisplay;
-        [SerializeField] private TMP_Text _ammoDisplay;
+        [SerializeField] private Image _healthBar;
         [SerializeField] private TMP_Text _EnemiesAliveDisplay;
         [SerializeField] private Image _DamageFlash;
 
@@ -21,6 +21,9 @@ namespace Managers
         
         [SerializeField] private GameObject _turretSelected;
         [SerializeField] private GameObject _missileSelected;
+        
+        [SerializeField] private Image _missileReloadBar;
+        [SerializeField] private Image _turretReloadBar;
 
         private void Awake()
         {
@@ -34,17 +37,17 @@ namespace Managers
             EventManager.instance.OnPlayerHealthChange += ActivateDamageFlash;
             EventManager.instance.OnPlayerAmmoUpdate += UpdateAmmoDisplay;
             EventManager.instance.OnPlayerWeaponChange += UpdateWeaponDisplay;
+            EventManager.instance.OnPlayerReloadUpdate += UpdateReloadBar;
         }
         
         public void UpdateEnemyAliveDisplay(int enemiesAlive)
         {
-            _EnemiesAliveDisplay.text = $"Enemies Alive: {enemiesAlive}";
+            _EnemiesAliveDisplay.text = $"{enemiesAlive}";
         }
         
         public void UpdateHealthDisplay(float currentHealth, float maxHealth)
         {
-            _healthDisplay.text = $"Health: {currentHealth}/{maxHealth}";
-
+            _healthBar.fillAmount = currentHealth / maxHealth;
         }
 
         private void ActivateDamageFlash(float currentHealth, float maxHealth)
@@ -78,6 +81,26 @@ namespace Managers
                 _missileSelected.SetActive(false);
                 _turretSelected.SetActive(true);
             }
+        }
+        
+        private void UpdateReloadBar(IWeapon weapon)
+        {
+            if (!weapon.IsReloading) return;
+            StartCoroutine(weapon is MissileLauncher
+                ? ReloadBarFill(_missileReloadBar, weapon.ReloadCooldown)
+                : ReloadBarFill(_turretReloadBar, weapon.ReloadCooldown));
+        }
+        
+        IEnumerator ReloadBarFill(Image bar, float reloadTime)
+        {
+            float time = 0.0f;
+            while (time < reloadTime)
+            {
+                bar.fillAmount = time / reloadTime;
+                time += Time.deltaTime;
+                yield return null;
+            }
+            bar.fillAmount = 0.0f;
         }
     }
 }

@@ -7,8 +7,9 @@ namespace Controllers.LifeControllers
     {
         public GameObject explosionPrefab;
         private bool isDead = false;
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             EventManager.instance.EventEnemySpawn();
         }
 

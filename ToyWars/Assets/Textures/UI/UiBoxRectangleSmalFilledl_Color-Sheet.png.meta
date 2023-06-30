@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0d1695267a3bc404da19f9be558f6b14
+guid: 03e55316f7ff2bb4d8dd0725ca99387d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -57,7 +57,7 @@ TextureImporter:
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
-  flipbookColumns: 3
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -103,18 +103,84 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: UiBoxRectangleSmalFilledl_Color-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 50
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc6c513a42844dd4e8c1f028021012d2
+      internalID: 1655387803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UiBoxRectangleSmalFilledl_Color-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 50
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d3543098224ea74db91e6a19dc8d239
+      internalID: -742884588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UiBoxRectangleSmalFilledl_Color-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 50
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7aa324e30c5ce742a0c4f477fb3b0db
+      internalID: -209399391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5943cee05d0ae3e478ad907702081b21
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UiBoxRectangleSmalFilledl_Color-Sheet_0: 1655387803
+      UiBoxRectangleSmalFilledl_Color-Sheet_1: -742884588
+      UiBoxRectangleSmalFilledl_Color-Sheet_2: -209399391
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
