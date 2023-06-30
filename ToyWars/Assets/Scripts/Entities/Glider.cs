@@ -128,6 +128,9 @@ namespace Entities
         {
             EventManager.instance.EventShootingUpdate(isShooting, _activeWeapon);
             _isShooting = isShooting;
+            
+            if(isShooting)
+                StartCoroutine(ToggleLight());
         }
         
         private void OnShot(IWeapon weapon)
@@ -137,9 +140,13 @@ namespace Entities
         
         IEnumerator ToggleLight()
         {
-            _gunLight.intensity = 8.0f;
-             yield return new WaitForSeconds(gunLightPeriod);
-             _gunLight.intensity = 0.0f;
+            while (_isShooting && !_activeWeapon.IsReloading)
+            {
+                _gunLight.intensity = 8.0f;
+                yield return new WaitForSeconds(gunLightPeriod);
+                _gunLight.intensity = 0.0f;
+                yield return new WaitForSeconds(gunLightPeriod);
+            }
         }
 
         private void ApplyBaloonBuff(BaloonType type) {
