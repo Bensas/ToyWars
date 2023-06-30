@@ -12,9 +12,8 @@ namespace Sound
 
             _audioSource.clip = SoundsLibrary.BulletHit1;
             _audioSource.loop = false;
-            Debug.Log(EventManager.instance);
-            
-            Invoke("AddFunctionToEventManager", 1);
+
+            AddFunctionToEventManager();
         }
 
         private void AddFunctionToEventManager() {

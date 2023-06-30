@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentLife: 0
+  explosionPrefab: {fileID: 100004, guid: 82019e923dca94848916b96b8f98a352, type: 3}
 --- !u!114 &346297821
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 ﻿using System;
+using Strategy;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,7 +25,7 @@ namespace Managers
         {
             EventManager.instance.OnPlayerHealthChange += UpdateHealthDisplay;
             EventManager.instance.OnPlayerHealthChange += ActivateDamageFlash;
-            EventManager.instance.OnPlayerAmmoChange += UpdateAmmoDisplay;
+            EventManager.instance.OnPlayerAmmoUpdate += UpdateAmmoDisplay;
 
         }
         
@@ -46,9 +47,9 @@ namespace Managers
             _DamageFlash.color = temp;
         }
         
-        private void UpdateAmmoDisplay(int currentAmmo)
+        private void UpdateAmmoDisplay(IWeapon weapon)
         {
-            _ammoDisplay.text = $"Ammo: {currentAmmo}";
+            _ammoDisplay.text = $"Ammo: {weapon.CurrentProjectileCount}";
         }
     }
 }

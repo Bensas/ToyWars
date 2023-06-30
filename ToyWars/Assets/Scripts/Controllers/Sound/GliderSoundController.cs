@@ -1,9 +1,8 @@
-﻿using Flyweight;
-using Managers;
+﻿using Managers;
+using Sound;
 using Strategy;
-using UnityEngine;
 
-namespace Sound
+namespace Controllers.Sound
 {
     public class GliderSoundController : SoundController
     {
@@ -16,38 +15,38 @@ namespace Sound
 
             EventManager.instance.OnPlayerShootingUpdate += OnPlayerShootingUpdate;
             EventManager.instance.OnPlayerReloadUpdate += OnPlayerReloadUpdate;
+            EventManager.instance.OnPlayerShoot += OnPlayerShoot;
         }
 
+        private void OnPlayerShoot(IWeapon weapon)
+        {
+            if (!weapon.FireOnHold)
+            {
+                _audioSource.PlayOneShot(weapon.IsReloading ? SoundsLibrary.PlaneEmpty : weapon.ShotSound);
+            }
+        }
+        
         private void OnPlayerShootingUpdate(bool isShooting, IWeapon weapon)
         {
-            if (isShooting)
+            if (isShooting && weapon.FireOnHold)
             {
-                if (weapon.FireOnHold)
-                {
-                    _audioSource.clip = weapon.ShotSound;
-                    Play();   
-                }
-                else
-                    _audioSource.PlayOneShot(weapon.ShotSound);
+                _audioSource.clip = weapon.IsReloading ? SoundsLibrary.PlaneEmpty : weapon.ShotSound;
+                Play();
             }
-            else 
-                if(weapon.FireOnHold)
-                    Stop();
+            else if(!isShooting && weapon.FireOnHold)
+            {
+                Stop();
+            }
+            
         }
 
-        private void OnPlayerReloadUpdate(bool isReloading)
+        private void OnPlayerReloadUpdate(IWeapon weapon)
         {
-            if (isReloading)
+            if (weapon.IsReloading && weapon.FireOnHold)
             {
                 bool isPlaying = _audioSource.isPlaying;
                 _audioSource.clip = SoundsLibrary.PlaneEmpty;
                 if(isPlaying) _audioSource.Play();
-                
-                // Play Reload sound;
-            }
-            else
-            {
-                _audioSource.clip = SoundsLibrary.PlaneShoot;
             }
         }
     }

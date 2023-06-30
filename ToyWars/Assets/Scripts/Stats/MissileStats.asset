@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: MissileStats
   m_EditorClassIdentifier: 
   _statValues:
-    damage: 0
-    speed: 0
-    lifeTime: 0
-    layerMasks: 
-    angleChangingSpeed: 0
+    damage: 50
+    speed: 10
+    lifeTime: 10
+    layerMasks: 06000000
+    angleChangingSpeed: 15

@@ -12,9 +12,8 @@ namespace Sound
 
             _audioSource.clip = SoundsLibrary.Explosion;
             _audioSource.loop = false;
-            Debug.Log(EventManager.instance);
-            
-            Invoke("AddFunctionToEventManager", 1);
+
+            AddFunctionToEventManager();
         }
 
         private void AddFunctionToEventManager() {
@@ -24,7 +23,6 @@ namespace Sound
 
         private void PlayExplosionSound()
         {
-            Debug.Log("Playing explosion sound");
             Play();
         }
     }

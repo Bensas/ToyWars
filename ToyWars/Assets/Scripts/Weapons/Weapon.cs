@@ -23,11 +23,12 @@ namespace Weapons
         public float ReloadCooldown => _stats.ReloadCooldown;
         public AudioClip ShotSound => _stats.ShotSound;
         public bool FireOnHold => _stats.FireOnHold;
+        public bool IsReloading { get; private set; } = false;
+        public int CurrentProjectileCount => _currentProjectileCount;
 
         private bool _ownerIsPlayer = false;
         protected Actor _owner;
-        private bool _isReloading = false;
-        
+
         private void Start()
         {
             _currentProjectileCount = MaxProjectileCount;
@@ -40,7 +41,7 @@ namespace Weapons
             if (_currentShotCooldown > 0) _currentShotCooldown -= Time.deltaTime;
             if (_currentProjectileCount <= 0)
             {
-                if (!_isReloading) UpdateReloadState(true);
+                if (!IsReloading) UpdateReloadState(true);
                 
                 if (_currentReloadCooldown > 0) _currentReloadCooldown -= Time.deltaTime;
                 else Reload();
@@ -54,6 +55,8 @@ namespace Weapons
                 InstantiateProjectile();
                 _currentShotCooldown = ShotCooldown;
                 _currentProjectileCount--;
+                if(_ownerIsPlayer)
+                    EventManager.instance.EventPlayerShoot(this);
             }
             UpdateAmmoUI();
         }
@@ -76,16 +79,14 @@ namespace Weapons
         public void UpdateAmmoUI()
         {
             if(_ownerIsPlayer)
-                EventManager.instance.EventPlayerAmmoChange(_currentProjectileCount);
+                EventManager.instance.EventPlayerAmmoUpdate(this);
         }
-
-        public bool IsReloading() => _isReloading;
 
         public void UpdateReloadState(bool isReloading)
         {
-            _isReloading = isReloading;
+            IsReloading = isReloading;
             if(_ownerIsPlayer)
-                EventManager.instance.EventReloadUpdate(isReloading);
+                EventManager.instance.EventReloadUpdate(this);
         }
         
         public void SetOwnerIsPlayer(bool isPlayer) => _ownerIsPlayer = isPlayer;

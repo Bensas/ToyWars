@@ -17,4 +17,6 @@ MonoBehaviour:
     damage: 10
     maxProjectileCount: 1000
     shotCooldown: 0.01
-    reloadCooldown: 10
+    reloadCooldown: 5
+    shotSound: {fileID: 0}
+    fireOnHold: 1

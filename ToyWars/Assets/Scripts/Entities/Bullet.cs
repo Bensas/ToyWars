@@ -30,7 +30,6 @@ namespace Entities
         {
             if (_stats.LayerMasks.Contains(collision.gameObject.layer))
             {
-                Debug.Log(collision.gameObject.name);
                 IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
                 if (damageable != null) GliderEventQueueManager.instance.AddEvent(new CmdApplyDamage(damageable, Damage));
             }

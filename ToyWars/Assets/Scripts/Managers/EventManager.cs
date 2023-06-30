@@ -14,11 +14,13 @@ namespace Managers
         public event Action OnBaloonKill;
         public event Action OnBaloonSpawn;
         public event Action<float, float> OnPlayerHealthChange;
-        public event Action<int> OnPlayerAmmoChange;
+        public event Action<IWeapon> OnPlayerShoot;
+        public event Action<IWeapon> OnPlayerAmmoUpdate; 
         public event Action<bool, IWeapon> OnPlayerShootingUpdate;
-        public event Action<bool> OnPlayerReloadUpdate;
+        public event Action<IWeapon> OnPlayerReloadUpdate;
         public event Action<IWeapon> OnPlayerWeaponChange; 
 
+        
         private void Awake()
         {
             if (instance != null) Destroy(this);
@@ -31,9 +33,10 @@ namespace Managers
         public void EventBaloonKill() => OnBaloonKill?.Invoke();
         public void EventBaloonSpawn() => OnBaloonSpawn?.Invoke();
         public void EventPlayerHealthChange(float currentHealth, float maxHealth) => OnPlayerHealthChange?.Invoke(currentHealth, maxHealth);
-        public void EventPlayerAmmoChange(int currentAmmo) => OnPlayerAmmoChange?.Invoke(currentAmmo);
+        public void EventPlayerShoot(IWeapon currentWeapon) => OnPlayerShoot?.Invoke(currentWeapon);
+        public void EventPlayerAmmoUpdate(IWeapon currentWeapon) => OnPlayerAmmoUpdate?.Invoke(currentWeapon);
         public void EventShootingUpdate(bool isShooting, IWeapon weapon) => OnPlayerShootingUpdate?.Invoke(isShooting, weapon);
-        public void EventReloadUpdate(bool isReloading) => OnPlayerReloadUpdate?.Invoke(isReloading);
+        public void EventReloadUpdate(IWeapon weapon) => OnPlayerReloadUpdate?.Invoke(weapon);
         public void EventWeaponChange(IWeapon weapon) => OnPlayerWeaponChange?.Invoke(weapon);
 
     }

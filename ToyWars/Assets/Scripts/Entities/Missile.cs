@@ -28,7 +28,7 @@ namespace Entities
         public float AngleChangingSpeed => _stats.AngleChangingSpeed;
         
         [SerializeField] private float _currentLifetime;
-        
+
         public void Travel()
         {
 
@@ -74,7 +74,7 @@ namespace Entities
                 IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
                 if (damageable != null) GliderEventQueueManager.instance.AddEvent(new CmdApplyDamage(damageable, Damage));
             }
-            
+
             Explode();
         }
 

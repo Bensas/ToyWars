@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: MissileLauncherStats
   m_EditorClassIdentifier: 
   _statValues:
-    projectilePrefab: {fileID: 0}
-    damage: 0
-    maxProjectileCount: 0
-    shotCooldown: 0
-    reloadCooldown: 0
+    projectilePrefab: {fileID: 8785755641991019657, guid: 23a33af249b0abb46aa3b3bfc1148d68, type: 3}
+    damage: 50
+    maxProjectileCount: 10
+    shotCooldown: 0.5
+    reloadCooldown: 10
+    shotSound: {fileID: 8300000, guid: 52d4aea4f08823c458f41e1d8c157043, type: 3}
+    fireOnHold: 0

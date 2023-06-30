@@ -15,6 +15,8 @@ namespace Strategy
         float ReloadCooldown { get; }
         AudioClip ShotSound { get; }
         bool FireOnHold { get; }
+        bool IsReloading { get; }
+        int CurrentProjectileCount { get; }
         
         void Attack();
     }

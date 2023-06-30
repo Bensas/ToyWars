@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Commands;
 using Controllers;
+using Controllers.Sound;
 using Managers;
 using Sound;
 using Strategy;
 using UnityEngine;
+using Utils;
 using Weapons;
 
 namespace Entities
@@ -28,6 +31,8 @@ namespace Entities
 
         public Light _gunLight;
         private float gunLightPeriod = 0.1f;
+        
+        private readonly InputUtils _inputUtils = new();
 
         public void Start()
         {
@@ -37,6 +42,7 @@ namespace Entities
             Cursor.visible = false;
             
             ChangeWeapon(0);
+            EventManager.instance.OnPlayerShoot += OnShot;
         }
 
         void Update()
@@ -48,36 +54,32 @@ namespace Entities
             GliderEventQueueManager.instance.AddEvent(new CmdMovement(_gliderMovementController, pitch, yaw, roll));
 
             UpdateLockOnTarget();
-            
-            if (Input.GetAxisRaw("Fire1") > 0)
+
+            HandleShooting();
+        }
+
+        private void HandleShooting()
+        {
+            _inputUtils.HandleFireInput();
+
+            if (_inputUtils.OnFiringDown)
             {
-                if (!_isShooting)
-                {
-                    _isShooting = true;
-                    EventManager.instance.EventShootingUpdate(true, _activeWeapon);
-                    GliderEventQueueManager.instance.AddEvent(new CmdShoot(_activeWeapon));
-                }
-                else
-                {
-                    if(_activeWeapon.FireOnHold)
-                        GliderEventQueueManager.instance.AddEvent(new CmdShoot(_activeWeapon));
-                }
+                _isShooting = true;
+                EventManager.instance.EventShootingUpdate(true, _activeWeapon);
             }
-            else
+            else if (_inputUtils.OnFiringUp)
             {
-                if(_isShooting)
-                {
-                    _isShooting = false;
-                    _gunLight.intensity = 0;
-                    EventManager.instance.EventShootingUpdate(false, _activeWeapon);
-                }
+                _isShooting = false;
+                EventManager.instance.EventShootingUpdate(false, _activeWeapon);
             }
 
-            if (_isShooting) {
-                if (Time.unscaledTime % gunLightPeriod < gunLightPeriod/2) {
-                    _gunLight.intensity = 8.0f;
-                } else {
-                    _gunLight.intensity = 0.0f;   
+            if (_isShooting)
+            {
+                GliderEventQueueManager.instance.AddEvent(new CmdShoot(_activeWeapon));
+                if (!_activeWeapon.FireOnHold)
+                {
+                    EventManager.instance.EventShootingUpdate(false, _activeWeapon);
+                    _isShooting = false;
                 }
             }
         }
@@ -97,6 +99,18 @@ namespace Entities
             if (_gliderRadarController.Target != newTarget) 
                 GliderEventQueueManager.instance.AddEvent(new CmdLockOn(_gliderRadarController, newTarget));
 
+        }
+        
+        private void OnShot(IWeapon weapon)
+        {
+            StartCoroutine(ToggleLight());
+        }
+        
+        IEnumerator ToggleLight()
+        {
+            _gunLight.intensity = 8.0f;
+             yield return new WaitForSeconds(gunLightPeriod);
+             _gunLight.intensity = 0.0f;
         }
     }
 }
