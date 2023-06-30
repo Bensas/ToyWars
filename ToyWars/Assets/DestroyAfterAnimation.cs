@@ -10,7 +10,7 @@ public class DestroyAfterAnimation : MonoBehaviour
     {
         ParticleSystem parts = transform.Find("Exposion-[Explosion1]").GetComponent<ParticleSystem>();
         float totalDuration = parts.duration + parts.startLifetime;
-        Destroy(this, totalDuration);       
+        Destroy(gameObject, totalDuration);       
     }
 
     // Update is called once per frame
