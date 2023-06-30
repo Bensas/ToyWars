@@ -50,27 +50,26 @@ namespace Entities
             float roll = -Input.GetAxis("Roll") * _sensitivity;
             float pitch = Input.GetAxis("Pitch") * _sensitivity;
             float yaw = Input.GetAxis("Yaw") * _sensitivity;
-            
-            GliderEventQueueManager.instance.AddEvent(new CmdMovement(_gliderMovementController, pitch, yaw, roll));
 
             UpdateLockOnTarget();
 
+            HandleWeaponChange();
             HandleShooting();
         }
 
         private void HandleShooting()
         {
             _inputUtils.HandleFireInput();
+            
+            Debug.Log("Firing: " + _inputUtils.IsFiring + " - Down: " + _inputUtils.OnFiringDown + " - Up: " + _inputUtils.OnFiringUp);
 
             if (_inputUtils.OnFiringDown)
             {
-                _isShooting = true;
-                EventManager.instance.EventShootingUpdate(true, _activeWeapon);
+                UpdateOnShooting(true);
             }
             else if (_inputUtils.OnFiringUp)
             {
-                _isShooting = false;
-                EventManager.instance.EventShootingUpdate(false, _activeWeapon);
+                UpdateOnShooting(false);
             }
 
             if (_isShooting)
@@ -78,9 +77,17 @@ namespace Entities
                 GliderEventQueueManager.instance.AddEvent(new CmdShoot(_activeWeapon));
                 if (!_activeWeapon.FireOnHold)
                 {
-                    EventManager.instance.EventShootingUpdate(false, _activeWeapon);
-                    _isShooting = false;
+                    UpdateOnShooting(false);
                 }
+            }
+        }
+
+        private void HandleWeaponChange()
+        {
+            if (Input.GetButtonDown("Swap"))
+            {
+                UpdateOnShooting(false);
+                ChangeWeapon((_weapons.IndexOf(_activeWeapon) + 1) % _weapons.Count);
             }
         }
 
@@ -91,6 +98,8 @@ namespace Entities
             _activeWeapon.UpdateAmmoUI();
             _activeWeapon.SetOwnerIsPlayer(true);
             _activeWeapon.SetOwner(this);
+            
+            EventManager.instance.EventWeaponChange(_activeWeapon);
         }
         
         private void UpdateLockOnTarget()
@@ -99,6 +108,12 @@ namespace Entities
             if (_gliderRadarController.Target != newTarget) 
                 GliderEventQueueManager.instance.AddEvent(new CmdLockOn(_gliderRadarController, newTarget));
 
+        }
+
+        private void UpdateOnShooting(bool isShooting)
+        {
+            EventManager.instance.EventShootingUpdate(isShooting, _activeWeapon);
+            _isShooting = isShooting;
         }
         
         private void OnShot(IWeapon weapon)

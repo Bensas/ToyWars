@@ -3,6 +3,7 @@ using Strategy;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Weapons;
 
 namespace Managers
 {
@@ -15,6 +16,12 @@ namespace Managers
         [SerializeField] private TMP_Text _EnemiesAliveDisplay;
         [SerializeField] private Image _DamageFlash;
 
+        [SerializeField] private TMP_Text _missileCountDisplay;
+        [SerializeField] private TMP_Text _turretCountDisplay;
+        
+        [SerializeField] private GameObject _turretSelected;
+        [SerializeField] private GameObject _missileSelected;
+
         private void Awake()
         {
             if (instance != null) Destroy(this);
@@ -26,7 +33,7 @@ namespace Managers
             EventManager.instance.OnPlayerHealthChange += UpdateHealthDisplay;
             EventManager.instance.OnPlayerHealthChange += ActivateDamageFlash;
             EventManager.instance.OnPlayerAmmoUpdate += UpdateAmmoDisplay;
-
+            EventManager.instance.OnPlayerWeaponChange += UpdateWeaponDisplay;
         }
         
         public void UpdateEnemyAliveDisplay(int enemiesAlive)
@@ -49,7 +56,28 @@ namespace Managers
         
         private void UpdateAmmoDisplay(IWeapon weapon)
         {
-            _ammoDisplay.text = $"Ammo: {weapon.CurrentProjectileCount}";
+            if (weapon is MissileLauncher)
+            {
+                _missileCountDisplay.text = weapon.CurrentProjectileCount.ToString();
+            }
+            else
+            {
+                _turretCountDisplay.text = weapon.CurrentProjectileCount.ToString();
+            }
+        }
+        
+        private void UpdateWeaponDisplay(IWeapon weapon)
+        {
+            if (weapon is MissileLauncher)
+            {
+                _missileSelected.SetActive(true);
+                _turretSelected.SetActive(false);
+            }
+            else
+            {
+                _missileSelected.SetActive(false);
+                _turretSelected.SetActive(true);
+            }
         }
     }
 }
