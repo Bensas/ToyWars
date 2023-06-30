@@ -25,6 +25,9 @@ namespace Flyweight
 
         public AudioClip Explosion => _soundClips.explosion;
         
+        public AudioClip HealthBuff => _soundClips.healthBuff;
+        public AudioClip SpeedBuff => _soundClips.speedBuff;
+        
         
         [System.Serializable]
         public struct SoundClips
@@ -46,6 +49,9 @@ namespace Flyweight
             public AudioClip bulletHi3;
 
             public AudioClip explosion;
+
+            public AudioClip healthBuff;
+            public AudioClip speedBuff;
         }
     }
     

@@ -31,6 +31,7 @@ namespace Managers
         private void Start()
         {
             EventManager.instance.OnPlayerHealthChange += UpdateHealthDisplay;
+            EventManager.instance.OnPlayerBuff += UpdateHealthDisplay;
             EventManager.instance.OnPlayerHealthChange += ActivateDamageFlash;
             EventManager.instance.OnPlayerAmmoUpdate += UpdateAmmoDisplay;
             EventManager.instance.OnPlayerWeaponChange += UpdateWeaponDisplay;
