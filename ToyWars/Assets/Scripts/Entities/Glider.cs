@@ -66,9 +66,8 @@ namespace Entities
             HandleWeaponChange();
             HandleShooting();
             if (speedBuffActive) {
-                _gliderMovementController.SetSpeed(600f);
-                if (Time.unscaledTime - speedBuffActivationTime > 3f) {
-                    _gliderMovementController.SetSpeed(500f);
+                if (Time.unscaledTime - speedBuffActivationTime > 1.5f) {
+                    _gliderMovementController.SetSpeed(2.5f);
                     speedBuffActive = false;
                 }
             }
@@ -146,13 +145,12 @@ namespace Entities
         private void ApplyBaloonBuff(BaloonType type) {
             switch (type){
                 case BaloonType.SPEED:
-                    Debug.Log("Got speed buff");
                     speedBuffActive = true;
                     speedBuffActivationTime = Time.unscaledTime;
+                    _gliderMovementController.SetSpeed(4f);
                     break;
                 case BaloonType.HEALTH:
                     _gliderLifeController.IncreaseLife(200);
-                    Debug.Log("Got health buff");
                     break;
             }
         }
