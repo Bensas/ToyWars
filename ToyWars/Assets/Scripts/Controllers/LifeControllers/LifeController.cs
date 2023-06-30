@@ -9,7 +9,7 @@ namespace Controllers.LifeControllers
     public class LifeController : MonoBehaviour, IDamageable
     {
         public float CurrentLife => _currentLife;
-        [SerializeField] private float _currentLife;
+        [SerializeField] protected float _currentLife;
         
         public float MaxLife => GetComponent<Actor>().Stats.MaxLife;
         

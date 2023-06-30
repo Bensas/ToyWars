@@ -26,5 +26,9 @@ namespace Controllers
             // _rb.AddTorque(transform.right * (pitch * Time.deltaTime));
             // _rb.AddTorque(transform.forward * (roll * Time.deltaTime));
         }
+
+        public void SetSpeed(float newSpeed) {
+            _speed = newSpeed;
+        }
     }
 }

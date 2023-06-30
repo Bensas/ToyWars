@@ -28,5 +28,12 @@ namespace Controllers.LifeControllers
             base.Die();
             EventManager.instance.EventGameOver(false);
         }
+
+        public void IncreaseLife(float amount)
+        {
+            _currentLife += amount;
+            if (_currentLife > MaxLife) _currentLife = MaxLife;
+            EventManager.instance.EventPlayerBuff(CurrentLife, MaxLife);
+        }
     }
 }

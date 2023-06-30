@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 
-public enum BaloonType {
-    SPEED,
-    HEALTH
-}
+
 
 namespace Flyweight
 {
+
+    public enum BaloonType {
+        SPEED,
+        HEALTH
+    }
 
     [CreateAssetMenu(fileName = "BaloonStats", menuName = "Stats/Baloon", order = 0)]
     public class BaloonStats : ScriptableObject

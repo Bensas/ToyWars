@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using Commands;
 using Controllers;
 using Controllers.Sound;
+using Controllers.LifeControllers;
 using Managers;
 using Sound;
 using Strategy;
 using UnityEngine;
 using Utils;
 using Weapons;
+using Flyweight;
 
 namespace Entities
 {
@@ -26,11 +28,15 @@ namespace Entities
         private GliderMovementController _gliderMovementController;
         private GliderSoundController _gliderSoundController;
         private GliderRadarController _gliderRadarController;
+        private GliderLifeController _gliderLifeController;
 
         private bool _isShooting = false;
 
         public Light _gunLight;
         private float gunLightPeriod = 0.1f;
+
+        private bool speedBuffActive = false;
+        private float speedBuffActivationTime = 0;
         
         private readonly InputUtils _inputUtils = new();
 
@@ -39,10 +45,12 @@ namespace Entities
             _gliderMovementController = GetComponent<GliderMovementController>();
             _gliderSoundController = GetComponent<GliderSoundController>();
             _gliderRadarController = GetComponent<GliderRadarController>();
+            _gliderLifeController = GetComponent<GliderLifeController>();
             Cursor.visible = false;
             
             ChangeWeapon(0);
             EventManager.instance.OnPlayerShoot += OnShot;
+            EventManager.instance.OnBaloonKill += ApplyBaloonBuff;
         }
 
         void Update()
@@ -57,6 +65,13 @@ namespace Entities
 
             HandleWeaponChange();
             HandleShooting();
+            if (speedBuffActive) {
+                _gliderMovementController.SetSpeed(600f);
+                if (Time.unscaledTime - speedBuffActivationTime > 3f) {
+                    _gliderMovementController.SetSpeed(500f);
+                    speedBuffActive = false;
+                }
+            }
         }
 
         private void HandleShooting()
@@ -126,6 +141,20 @@ namespace Entities
             _gunLight.intensity = 8.0f;
              yield return new WaitForSeconds(gunLightPeriod);
              _gunLight.intensity = 0.0f;
+        }
+
+        private void ApplyBaloonBuff(BaloonType type) {
+            switch (type){
+                case BaloonType.SPEED:
+                    Debug.Log("Got speed buff");
+                    speedBuffActive = true;
+                    speedBuffActivationTime = Time.unscaledTime;
+                    break;
+                case BaloonType.HEALTH:
+                    _gliderLifeController.IncreaseLife(200);
+                    Debug.Log("Got health buff");
+                    break;
+            }
         }
     }
 }

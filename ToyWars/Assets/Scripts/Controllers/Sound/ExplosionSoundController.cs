@@ -17,12 +17,16 @@ namespace Sound
         }
 
         private void AddFunctionToEventManager() {
-          EventManager.instance.OnEnemyKill += PlayExplosionSound;
+          EventManager.instance.OnEnemyKill += PlayEnemyExplosionSound;
           EventManager.instance.OnBaloonKill += PlayExplosionSound;
         }
 
-        private void PlayExplosionSound()
+        private void PlayExplosionSound(BaloonType type)
         {
+            Play();
+        }
+
+        private void PlayEnemyExplosionSound() {
             Play();
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Strategy;
 using UnityEngine;
+using Flyweight;
 
 namespace Managers
 {
@@ -11,9 +12,10 @@ namespace Managers
         public event Action<bool> OnGameOver;
         public event Action OnEnemyKill;
         public event Action OnEnemySpawn;
-        public event Action OnBaloonKill;
+        public event Action<BaloonType> OnBaloonKill;
         public event Action OnBaloonSpawn;
         public event Action<float, float> OnPlayerHealthChange;
+        public event Action<float, float> OnPlayerBuff;
         public event Action<IWeapon> OnPlayerShoot;
         public event Action<IWeapon> OnPlayerAmmoUpdate; 
         public event Action<bool, IWeapon> OnPlayerShootingUpdate;
@@ -30,9 +32,10 @@ namespace Managers
         public void EventGameOver(bool isVictory) => OnGameOver?.Invoke(isVictory);
         public void EventEnemyKill() => OnEnemyKill?.Invoke();
         public void EventEnemySpawn() => OnEnemySpawn?.Invoke();
-        public void EventBaloonKill() => OnBaloonKill?.Invoke();
+        public void EventBaloonKill(BaloonType type) => OnBaloonKill?.Invoke(type);
         public void EventBaloonSpawn() => OnBaloonSpawn?.Invoke();
         public void EventPlayerHealthChange(float currentHealth, float maxHealth) => OnPlayerHealthChange?.Invoke(currentHealth, maxHealth);
+        public void EventPlayerBuff(float currentHealth, float maxHealth) => OnPlayerBuff?.Invoke(currentHealth, maxHealth);
         public void EventPlayerShoot(IWeapon currentWeapon) => OnPlayerShoot?.Invoke(currentWeapon);
         public void EventPlayerAmmoUpdate(IWeapon currentWeapon) => OnPlayerAmmoUpdate?.Invoke(currentWeapon);
         public void EventShootingUpdate(bool isShooting, IWeapon weapon) => OnPlayerShootingUpdate?.Invoke(isShooting, weapon);
