@@ -15,7 +15,7 @@ namespace UI
         }
 
         public void LoadMenuScene() => SceneManager.LoadScene("Main Menu");
-        public void LoadLevelScene() => SceneManager.LoadScene("BedroomScene");
+        public void LoadLevelScene() => SceneManager.LoadScene("Loading");
         public void CloseGame() => Application.Quit();
 
         public void ButtonSelect() =>

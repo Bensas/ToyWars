@@ -22,7 +22,6 @@ namespace Sound
 
         private void OnBulletHitPlayer(float health1, float health2)
         {
-            Debug.Log("Playing bullet sound");
             _audioSource.clip = GetRandomBulletHitSound();
             Play();
         }
