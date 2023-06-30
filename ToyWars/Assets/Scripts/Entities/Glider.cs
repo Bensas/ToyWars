@@ -10,6 +10,7 @@ using Strategy;
 using UnityEngine;
 using Utils;
 using Weapons;
+using Flyweight;
 
 namespace Entities
 {
@@ -43,6 +44,7 @@ namespace Entities
             
             ChangeWeapon(0);
             EventManager.instance.OnPlayerShoot += OnShot;
+            EventManager.instance.OnBaloonKill += ApplyBaloonBuff;
         }
 
         void Update()
@@ -126,6 +128,17 @@ namespace Entities
             _gunLight.intensity = 8.0f;
              yield return new WaitForSeconds(gunLightPeriod);
              _gunLight.intensity = 0.0f;
+        }
+
+        private void ApplyBaloonBuff(BaloonType type) {
+            switch (type){
+                case BaloonType.SPEED:
+                    Debug.Log("Got speed buff");
+                    break;
+                case BaloonType.HEALTH:
+                    Debug.Log("Got health buff");
+                    break;
+            }
         }
     }
 }
