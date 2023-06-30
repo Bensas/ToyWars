@@ -10,7 +10,6 @@ public class DestroyAfterAnimation : MonoBehaviour
     {
         ParticleSystem parts = transform.Find("Exposion-[Explosion1]").GetComponent<ParticleSystem>();
         float totalDuration = parts.duration + parts.startLifetime;
-        Debug.Log("Destory after" + totalDuration);
         Destroy(this, totalDuration);       
     }
 

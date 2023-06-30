@@ -29,7 +29,6 @@ namespace Sound
                     _audioSource.clip = SoundsLibrary.SpeedBuff;
                     break;
             }
-            Debug.Log("Playing buff sound");
             Play();
         }
     }

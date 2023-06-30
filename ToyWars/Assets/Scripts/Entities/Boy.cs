@@ -22,7 +22,7 @@ namespace Entities
 
         void Update()
         {
-            if (Time.unscaledTime - lastTimeOfStandUp > 10) {
+            if (Time.unscaledTime - lastTimeOfStandUp > 20) {
                 anim.Play("standup_faint");
                 lastTimeOfStandUp = Time.unscaledTime;
             }

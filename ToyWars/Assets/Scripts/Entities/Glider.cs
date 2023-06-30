@@ -145,14 +145,12 @@ namespace Entities
         private void ApplyBaloonBuff(BaloonType type) {
             switch (type){
                 case BaloonType.SPEED:
-                    Debug.Log("Got speed buff");
                     speedBuffActive = true;
                     speedBuffActivationTime = Time.unscaledTime;
                     _gliderMovementController.SetSpeed(4f);
                     break;
                 case BaloonType.HEALTH:
                     _gliderLifeController.IncreaseLife(200);
-                    Debug.Log("Got health buff");
                     break;
             }
         }
