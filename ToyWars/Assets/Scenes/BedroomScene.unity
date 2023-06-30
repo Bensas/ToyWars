@@ -8141,6 +8141,8 @@ MonoBehaviour:
   SPEED: 0.0005
   rising: 1
   health: 10
+  speedMaterial: {fileID: 2100000, guid: e176a5d676afe4be1aa0385335149b3e, type: 2}
+  healthMaterial: {fileID: 2100000, guid: e584a7f5e4dea450f83a8bf1dff8d4dd, type: 2}
   type: 1
 --- !u!114 &1756616562
 MonoBehaviour:

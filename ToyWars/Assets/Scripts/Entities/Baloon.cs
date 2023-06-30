@@ -18,11 +18,26 @@ namespace Entities
         public bool rising = true;
         public float health = 10;
 
+        public Material speedMaterial;
+        public Material healthMaterial;
+
         public BaloonType type = BaloonType.HEALTH;
+        private Material globeMaterial;
         
         public void Start()
         {
             // _baloonMovementController = GetComponent<BaloonMovementController>();
+            type = UnityEngine.Random.value > 0.5 ? BaloonType.HEALTH : BaloonType.SPEED;
+
+            // globeMaterial = ;
+            switch (type) {
+                case BaloonType.HEALTH:
+                    transform.Find("Loft01").GetComponent<Renderer>().material = healthMaterial;
+                    break;
+                case BaloonType.SPEED:
+                    transform.Find("Loft01").GetComponent<Renderer>().material = speedMaterial;
+                    break;
+            }
             
         }
 
