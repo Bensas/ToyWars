@@ -29,6 +29,7 @@ namespace Entities
         private GliderSoundController _gliderSoundController;
         private GliderRadarController _gliderRadarController;
         private GliderLifeController _gliderLifeController;
+        private Transform bombCameraTransform;
 
         private bool _isShooting = false;
 
@@ -51,6 +52,8 @@ namespace Entities
             ChangeWeapon(0);
             EventManager.instance.OnPlayerShoot += OnShot;
             EventManager.instance.OnBaloonKill += ApplyBaloonBuff;
+
+            bombCameraTransform = GameObject.Find("BombCamera").transform;
         }
 
         void Update()
@@ -71,6 +74,8 @@ namespace Entities
                     speedBuffActive = false;
                 }
             }
+
+            bombCameraTransform.forward = Vector3.down;
         }
 
         private void HandleShooting()
