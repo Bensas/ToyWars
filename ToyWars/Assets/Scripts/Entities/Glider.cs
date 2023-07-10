@@ -181,7 +181,7 @@ namespace Entities
 
         private void DeployBomb()
         {
-            var explosion = Instantiate(bombPrefab, transform.position, transform.rotation);
+            var explosion = Instantiate(bombPrefab, transform.position, Quaternion.identity);
         }
     }
 }
