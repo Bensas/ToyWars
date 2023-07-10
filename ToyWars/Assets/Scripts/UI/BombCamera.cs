@@ -13,6 +13,6 @@ public class BombCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.LookAt(transform.position + Vector3.down);
     }
 }

@@ -24,6 +24,7 @@ namespace Entities
         [SerializeField] private Weapon _activeWeapon;
         [SerializeField] private float _sensitivity = 15f;
         [SerializeField] private float maxTargetDistance = 50f; 
+        [SerializeField] public GameObject bombPrefab;
         
         private GliderMovementController _gliderMovementController;
         private GliderSoundController _gliderSoundController;
@@ -35,6 +36,7 @@ namespace Entities
 
         public Light _gunLight;
         private float gunLightPeriod = 0.1f;
+        
 
         private bool speedBuffActive = false;
         private float speedBuffActivationTime = 0;
@@ -68,6 +70,7 @@ namespace Entities
 
             HandleWeaponChange();
             HandleShooting();
+            HandleBombDrop();
             if (speedBuffActive) {
                 if (Time.unscaledTime - speedBuffActivationTime > 1.5f) {
                     _gliderMovementController.SetSpeed(2.5f);
@@ -107,6 +110,14 @@ namespace Entities
             {
                 UpdateOnShooting(false);
                 ChangeWeapon((_weapons.IndexOf(_activeWeapon) + 1) % _weapons.Count);
+            }
+        }
+
+        private void HandleBombDrop()
+        {
+            if (Input.GetButtonDown("Fire2"))
+            {
+                DeployBomb();
             }
         }
 
@@ -154,7 +165,8 @@ namespace Entities
             }
         }
 
-        private void ApplyBaloonBuff(BaloonType type) {
+        private void ApplyBaloonBuff(BaloonType type)
+        {
             switch (type){
                 case BaloonType.SPEED:
                     speedBuffActive = true;
@@ -165,6 +177,11 @@ namespace Entities
                     _gliderLifeController.IncreaseLife(200);
                     break;
             }
+        }
+
+        private void DeployBomb()
+        {
+            var explosion = Instantiate(bombPrefab, transform.position, transform.rotation);
         }
     }
 }
