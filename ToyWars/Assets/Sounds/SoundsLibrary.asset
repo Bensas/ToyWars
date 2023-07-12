@@ -25,5 +25,6 @@ MonoBehaviour:
     bulletHi2: {fileID: 8300000, guid: 9940728a2001846948f290a55ecf1a64, type: 3}
     bulletHi3: {fileID: 8300000, guid: 0336d74e6f2764dd7a0260e42899e907, type: 3}
     explosion: {fileID: 8300000, guid: 9c2d1d4b201ce4910b689a16a2c76ce7, type: 3}
+    bombExplosion: {fileID: 8300000, guid: 8adfafe50473545d39c5f716fad3f7d0, type: 3}
     healthBuff: {fileID: 8300000, guid: 7b964137a78ce465b901f53346998147, type: 3}
     speedBuff: {fileID: 8300000, guid: 7c64c8d66bb95409e9d0af5cd71aa9d8, type: 3}

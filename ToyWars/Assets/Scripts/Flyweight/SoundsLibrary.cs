@@ -24,6 +24,7 @@ namespace Flyweight
         public AudioClip BulletHit3 => _soundClips.bulletHi3;
 
         public AudioClip Explosion => _soundClips.explosion;
+        public AudioClip BombExplosion => _soundClips.bombExplosion;
         
         public AudioClip HealthBuff => _soundClips.healthBuff;
         public AudioClip SpeedBuff => _soundClips.speedBuff;
@@ -49,6 +50,7 @@ namespace Flyweight
             public AudioClip bulletHi3;
 
             public AudioClip explosion;
+            public AudioClip bombExplosion;
 
             public AudioClip healthBuff;
             public AudioClip speedBuff;

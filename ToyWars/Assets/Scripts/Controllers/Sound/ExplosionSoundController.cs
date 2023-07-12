@@ -10,7 +10,6 @@ namespace Sound
         {
             base.Awake();
 
-            _audioSource.clip = SoundsLibrary.Explosion;
             _audioSource.loop = false;
 
             AddFunctionToEventManager();
@@ -19,14 +18,23 @@ namespace Sound
         private void AddFunctionToEventManager() {
           EventManager.instance.OnEnemyKill += PlayEnemyExplosionSound;
           EventManager.instance.OnBaloonKill += PlayExplosionSound;
+          EventManager.instance.OnTankKill += PlayEnemyExplosionSound;
+          EventManager.instance.OnBombExplode += PlayBombExplosionSound;
         }
 
         private void PlayExplosionSound(BaloonType type)
         {
+            _audioSource.clip = SoundsLibrary.Explosion;
             Play();
         }
 
         private void PlayEnemyExplosionSound() {
+            _audioSource.clip = SoundsLibrary.Explosion;
+            Play();
+        }
+
+        private void PlayBombExplosionSound(Vector3 position, float radius) {
+            _audioSource.clip = SoundsLibrary.BombExplosion;
             Play();
         }
     }

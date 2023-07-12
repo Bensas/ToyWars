@@ -11,6 +11,7 @@ namespace Managers
         
         public event Action<bool> OnGameOver;
         public event Action OnEnemyKill;
+        public event Action OnTankKill;
         public event Action OnEnemySpawn;
         public event Action<BaloonType> OnBaloonKill;
         public event Action OnBaloonSpawn;
@@ -21,6 +22,7 @@ namespace Managers
         public event Action<bool, IWeapon> OnPlayerShootingUpdate;
         public event Action<IWeapon> OnPlayerReloadUpdate;
         public event Action<IWeapon> OnPlayerWeaponChange; 
+        public event Action<Vector3, float> OnBombExplode;
 
         
         private void Awake()
@@ -31,6 +33,7 @@ namespace Managers
         
         public void EventGameOver(bool isVictory) => OnGameOver?.Invoke(isVictory);
         public void EventEnemyKill() => OnEnemyKill?.Invoke();
+        public void EventTankKill() => OnTankKill?.Invoke();
         public void EventEnemySpawn() => OnEnemySpawn?.Invoke();
         public void EventBaloonKill(BaloonType type) => OnBaloonKill?.Invoke(type);
         public void EventBaloonSpawn() => OnBaloonSpawn?.Invoke();
@@ -41,6 +44,7 @@ namespace Managers
         public void EventShootingUpdate(bool isShooting, IWeapon weapon) => OnPlayerShootingUpdate?.Invoke(isShooting, weapon);
         public void EventReloadUpdate(IWeapon weapon) => OnPlayerReloadUpdate?.Invoke(weapon);
         public void EventWeaponChange(IWeapon weapon) => OnPlayerWeaponChange?.Invoke(weapon);
+        public void EventBombExplode(Vector3 explodePosition, float radius) => OnBombExplode?.Invoke(explodePosition, radius);
 
     }
 }
