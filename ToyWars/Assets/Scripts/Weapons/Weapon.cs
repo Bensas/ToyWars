@@ -50,6 +50,9 @@ namespace Weapons
         
         public void Attack()
         {
+            if (this == null){
+                return;
+            }
             if (_currentShotCooldown <= 0 && _currentProjectileCount > 0)
             {
                 InstantiateProjectile();

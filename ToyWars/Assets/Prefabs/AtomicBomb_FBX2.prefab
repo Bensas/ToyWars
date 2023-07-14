@@ -229,6 +229,7 @@ MonoBehaviour:
   _stats: {fileID: 11400000, guid: b0720c1b0b41440549cdd260ec5f8be9, type: 2}
   floor: {fileID: 0}
   EXPLOSION_RADIUS: 3
+  explosionPrefab: {fileID: 100004, guid: 82019e923dca94848916b96b8f98a352, type: 3}
   _currentLifetime: 0
 --- !u!1 &4892442899877928976
 GameObject:

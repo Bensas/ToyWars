@@ -14,7 +14,7 @@ namespace Entities
         
         public void Start()
         {
-          EventManager.instance.OnBombExplode += DieIfInsideBombRadius;
+          EventManager.instance.OnBombExplode += this.DieIfInsideBombRadius;
         }
 
         void Update()
@@ -26,6 +26,7 @@ namespace Entities
         {
           var explosion = Instantiate(explosionPrefab, transform.position, transform.rotation);
           EventManager.instance.EventTankKill();
+          EventManager.instance.OnBombExplode -= this.DieIfInsideBombRadius;
           Destroy(this.gameObject);
         }
 

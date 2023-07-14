@@ -17,6 +17,7 @@ namespace Entities
 
         public float Damage => _stats.Damage;
         public float Speed => _stats.Speed;
+        public GameObject explosionPrefab;
 
         [SerializeField] private float _currentLifetime;
 
@@ -31,14 +32,16 @@ namespace Entities
 
         public void OnHitFloor()
         {
+            Debug.Log("ONHitFloor");
             EventManager.instance.EventBombExplode(transform.position, EXPLOSION_RADIUS);
-            
+            var explosion = Instantiate(explosionPrefab, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }
 
         void Update()
         {
             Travel();
+            // Debug.Log(transform.position.y + " - " + floor.transform.position.y);
             if (transform.position.y <= floor.transform.position.y)
             {
                 OnHitFloor();
