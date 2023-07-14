@@ -39,6 +39,7 @@ namespace Entities
             _lifeController = GetComponent<BossLifeController>();
 
             GameManager.instance.SetBoss(this);
+            EventManager.instance.EventEnemySpawn();
         }
 
         void Update()
