@@ -17,7 +17,8 @@ namespace Controllers
 
         public float Speed => 1f;
         public void Move(Transform transform, Quaternion targetRotation, float rotationSpeed, float pitchAngle, float rollAngle)
-        {
+        {   
+            if (transform == null) return;
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             // transform.Rotate(pitchAngle, 0, -rollAngle);
             transform.Translate(Vector3.forward * (SPEED * Time.deltaTime));
