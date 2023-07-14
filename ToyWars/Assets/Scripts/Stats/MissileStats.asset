@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MissileStats
   m_EditorClassIdentifier: 
   _statValues:
-    damage: 50
+    damage: 500
     speed: 10
     lifeTime: 10
     layerMasks: 0600000009000000

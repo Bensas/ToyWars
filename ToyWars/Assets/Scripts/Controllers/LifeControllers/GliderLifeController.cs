@@ -5,6 +5,7 @@ namespace Controllers.LifeControllers
 {
     public class GliderLifeController : LifeController
     {
+        [SerializeField] private GameObject explosionPrefab;
         [SerializeField] private bool _invincible = false;
         
         protected override void Start()
@@ -27,6 +28,7 @@ namespace Controllers.LifeControllers
         {
             base.Die();
             EventManager.instance.EventGameOver(false);
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         }
 
         public void IncreaseLife(float amount)

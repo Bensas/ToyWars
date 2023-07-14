@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,8 +29,11 @@ public class LoadingManager : MonoBehaviour
     
     IEnumerator LoadYourAsyncScene()
     {
+        string scene = GameSceneManager.Instance.GetCurrentLevel();
+        Debug.Log(scene);
+        
         int progress =0;
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("BedroomScene");
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
         asyncLoad.allowSceneActivation = false;
         
         while (asyncLoad.progress < 0.9f || progress < 99)

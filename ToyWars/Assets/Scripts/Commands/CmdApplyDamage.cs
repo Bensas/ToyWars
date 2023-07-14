@@ -14,6 +14,8 @@ namespace Commands
             _damage = damage;
         }
         
-        public void Execute() => _damageable.TakeDamage(_damage);
+        public void Execute() => _damageable.
+            
+            TakeDamage(_damage);
     }
 }

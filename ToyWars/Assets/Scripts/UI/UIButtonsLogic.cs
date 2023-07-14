@@ -1,4 +1,5 @@
 ﻿using System;
+using Managers;
 using Sound;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,8 +15,9 @@ namespace UI
             Cursor.visible = true;
         }
 
-        public void LoadMenuScene() => SceneManager.LoadScene("Main Menu");
-        public void LoadLevelScene() => SceneManager.LoadScene("Loading");
+        public void LoadMenuScene() => GameSceneManager.Instance.LoadMainMenu();
+        public void LoadLevelScene() => GameSceneManager.Instance.LoadLoadingScene();
+        public void RestartGame() => GameSceneManager.Instance.LoadFirstLevel();
         public void CloseGame() => Application.Quit();
 
         public void ButtonSelect() =>

@@ -13,6 +13,8 @@ namespace Entities
         [SerializeField] private ProjectileStats _stats;
         [SerializeField] private IWeapon _owner;
         
+        [SerializeField] private GameObject _explosionPrefab;
+        
         private IRadar _radar;
         private ILockable target;
         private bool locked = false;
@@ -80,7 +82,7 @@ namespace Entities
 
         private void Explode()
         {
-            // DO SOMETHING
+            Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
 

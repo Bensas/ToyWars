@@ -6,7 +6,6 @@ using Controllers;
 using Controllers.Sound;
 using Controllers.LifeControllers;
 using Managers;
-using Sound;
 using Strategy;
 using UnityEngine;
 using Utils;
@@ -30,7 +29,8 @@ namespace Entities
         private GliderSoundController _gliderSoundController;
         private GliderRadarController _gliderRadarController;
         private GliderLifeController _gliderLifeController;
-        private Transform bombCameraTransform;
+        private Transform _bombCameraTransform;
+        private bool _hasBomb = false;
 
         private bool _isShooting = false;
 
@@ -42,6 +42,12 @@ namespace Entities
         private float speedBuffActivationTime = 0;
         
         private readonly InputUtils _inputUtils = new();
+
+        public void Awake()
+        {
+            if(GameManager.instance != null)
+                GameManager.instance.SetPlayerGlider(this);
+        }
 
         public void Start()
         {
@@ -55,7 +61,12 @@ namespace Entities
             EventManager.instance.OnPlayerShoot += OnShot;
             EventManager.instance.OnBaloonKill += ApplyBaloonBuff;
 
-            bombCameraTransform = GameObject.Find("BombCamera").transform;
+            var bombCamera = GameObject.Find("BombCamera");
+            if (bombCamera != null)
+            {
+                _bombCameraTransform = bombCamera.transform;
+                _hasBomb = true;
+            }
         }
 
         void Update()
@@ -77,8 +88,9 @@ namespace Entities
                     speedBuffActive = false;
                 }
             }
-
-            bombCameraTransform.forward = Vector3.down;
+            
+            if(_hasBomb)
+                _bombCameraTransform.forward = Vector3.down;
         }
 
         private void HandleShooting()
@@ -183,5 +195,7 @@ namespace Entities
         {
             var explosion = Instantiate(bombPrefab, transform.position, Quaternion.identity);
         }
+        
+        
     }
 }

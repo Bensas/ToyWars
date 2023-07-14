@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _statValues:
     projectilePrefab: {fileID: 8785755641991019657, guid: 27c53f070899a0d4d827d573515cbf7c, type: 3}
-    damage: 1
+    damage: 10
     maxProjectileCount: 500
     shotCooldown: 0.01
     reloadCooldown: 10
+    shotSound: {fileID: 0}
+    fireOnHold: 0

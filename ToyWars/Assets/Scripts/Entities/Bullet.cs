@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Commands;
 using Flyweight;
 using Managers;
@@ -13,7 +14,7 @@ namespace Entities
         [SerializeField] private IWeapon _owner;
 
         public IWeapon Owner => _owner;
-        public float Damage => _stats.Damage;
+        public float Damage => _owner?.Damage ?? _stats.Damage;
         public float Speed => _stats.Speed;
         public float LifeTime => _stats.LifeTime;
 
@@ -31,7 +32,10 @@ namespace Entities
             if (_stats.LayerMasks.Contains(collision.gameObject.layer))
             {
                 IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
-                if (damageable != null) GliderEventQueueManager.instance.AddEvent(new CmdApplyDamage(damageable, Damage));
+                if (damageable != null)
+                {
+                    GliderEventQueueManager.instance.AddEvent(new CmdApplyDamage(damageable, Damage));
+                }
             }
             
             Destroy(this.gameObject);

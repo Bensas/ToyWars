@@ -2,6 +2,7 @@
 using System.Collections;
 using Strategy;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Weapons;
@@ -11,6 +12,9 @@ namespace Managers
     public class UIManager : MonoBehaviour
     {
         public static UIManager instance;
+
+        [SerializeField] private GameObject _canvas;
+        [SerializeField] private GameObject _bombCamera;
         
         [SerializeField] private Image _healthBar;
         [SerializeField] private TMP_Text _EnemiesAliveDisplay;
@@ -24,6 +28,10 @@ namespace Managers
         
         [SerializeField] private Image _missileReloadBar;
         [SerializeField] private Image _turretReloadBar;
+
+        [SerializeField] private Image _bossHealthBar;
+        [SerializeField] private Image _fadeScreen;
+        private bool fading = false;
 
         private void Awake()
         {
@@ -39,8 +47,10 @@ namespace Managers
             EventManager.instance.OnPlayerAmmoUpdate += UpdateAmmoDisplay;
             EventManager.instance.OnPlayerWeaponChange += UpdateWeaponDisplay;
             EventManager.instance.OnPlayerReloadUpdate += UpdateReloadBar;
+            EventManager.instance.OnBossDamaged += UpdateBossHealthDisplay;
+            EventManager.instance.OnGameOver += OnGameOver;
         }
-        
+
         public void UpdateEnemyAliveDisplay(int enemiesAlive)
         {
             _EnemiesAliveDisplay.text = $"{enemiesAlive}";
@@ -91,7 +101,7 @@ namespace Managers
                 ? ReloadBarFill(_missileReloadBar, weapon.ReloadCooldown)
                 : ReloadBarFill(_turretReloadBar, weapon.ReloadCooldown));
         }
-        
+
         IEnumerator ReloadBarFill(Image bar, float reloadTime)
         {
             float time = 0.0f;
@@ -102,6 +112,46 @@ namespace Managers
                 yield return null;
             }
             bar.fillAmount = 0.0f;
+        }
+        
+        private void UpdateBossHealthDisplay(float currentHealth, float maxHealth)
+        {
+            _bossHealthBar.fillAmount = currentHealth / maxHealth;
+        }
+
+        private void OnGameOver(bool isVictory)
+        {
+            if (!fading)
+            {
+                if (!GameManager.instance.IsBossBattle && _fadeScreen != null)
+                {
+                    fading = true;
+                    StartCoroutine(FadeScreen());
+                }
+            }
+            
+            if(_canvas != null)
+                _canvas.SetActive(false);
+            if(_bombCamera != null)
+                _bombCamera.SetActive(false);
+        }
+
+        IEnumerator FadeScreen()
+        {
+            yield return new WaitForSeconds(1.0f);
+            _fadeScreen.gameObject.SetActive(true);
+            Color temp = _fadeScreen.color;
+            temp.a = 0.0f;
+            _fadeScreen.color = temp;
+            while (temp.a < 1.0f)
+            {
+                temp.a += 0.01f;
+                _fadeScreen.color = temp;
+                yield return null;
+            }
+
+            temp.a = 1.0f;
+            _fadeScreen.color = temp;
         }
     }
 }

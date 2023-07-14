@@ -458,6 +458,7 @@ MonoBehaviour:
   _activeWeapon: {fileID: 6310405340513093613}
   _sensitivity: 2000
   maxTargetDistance: 50
+  bombPrefab: {fileID: 0}
   _gunLight: {fileID: 449968502}
 --- !u!136 &22911002
 CapsuleCollider:
@@ -691,6 +692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentLife: 0
+  explosionPrefab: {fileID: 6921716172677459919, guid: f2b645c9a4155004c8bf301e1a478793, type: 3}
   _invincible: 1
 --- !u!135 &3848051522839856944
 SphereCollider:

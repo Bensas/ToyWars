@@ -8,13 +8,15 @@ namespace Controllers.LifeControllers
     [RequireComponent(typeof(Actor))]
     public class LifeController : MonoBehaviour, IDamageable
     {
+        public bool IsDead() => _currentLife <= 0;
         public float CurrentLife => _currentLife;
         [SerializeField] protected float _currentLife;
-        
-        public float MaxLife => GetComponent<Actor>().Stats.MaxLife;
-        
+
+        public float MaxLife { get; private set; }
+
         protected virtual void Start()
         {
+            MaxLife = GetComponent<Actor>().Stats.MaxLife;
             _currentLife = MaxLife;
         }
         
@@ -24,7 +26,7 @@ namespace Controllers.LifeControllers
             if (IsDead()) Die();
         }
         
-        private bool IsDead() => _currentLife <= 0;
+        
 
         protected virtual void Die() 
         {

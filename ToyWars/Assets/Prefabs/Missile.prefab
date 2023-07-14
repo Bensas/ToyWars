@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stats: {fileID: 11400000, guid: c0811e6ff97aff84cbf006f382a3f11b, type: 2}
+  _explosionPrefab: {fileID: 6921716172677459919, guid: f2b645c9a4155004c8bf301e1a478793, type: 3}
   _currentLifetime: 0
 --- !u!136 &4232087947744008347
 CapsuleCollider:
