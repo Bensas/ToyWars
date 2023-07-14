@@ -32,6 +32,7 @@ namespace Managers
         {
             if (instance != null) Destroy(this);
             instance = this;
+            Cursor.lockState = CursorLockMode.Locked;
         }
         
         public void EventGameOver(bool isVictory) => OnGameOver?.Invoke(isVictory);

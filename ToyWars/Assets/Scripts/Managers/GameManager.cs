@@ -40,6 +40,7 @@ namespace Managers
             
             Cursor.visible = false;
             EventManager.instance.OnEnemyKill += OnEnemyKill;
+            EventManager.instance.OnTankKill += OnEnemyKill;
             EventManager.instance.OnEnemySpawn += OnEnemySpawn;
             EventManager.instance.OnGameOver += OnGameOver;
             EventManager.instance.OnBossDeath += onBossDeath;

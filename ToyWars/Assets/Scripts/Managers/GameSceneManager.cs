@@ -43,6 +43,7 @@ namespace Managers
             }
             else
             {
+                Cursor.lockState = CursorLockMode.None;
                 SceneManager.LoadScene("Victory");
             }
         }
@@ -65,16 +66,19 @@ namespace Managers
 
         public void LoadVictoryScene()
         {
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene("Victory");
         }
         
         public void LoadDefeatScene()
         {
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene("Defeat");
         }
         
         public void LoadMainMenu()
         {
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene("Main Menu");
         }
         

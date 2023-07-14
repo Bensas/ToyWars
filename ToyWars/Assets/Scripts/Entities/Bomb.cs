@@ -32,7 +32,6 @@ namespace Entities
 
         public void OnHitFloor()
         {
-            Debug.Log("ONHitFloor");
             EventManager.instance.EventBombExplode(transform.position, EXPLOSION_RADIUS);
             var explosion = Instantiate(explosionPrefab, transform.position, transform.rotation);
             Destroy(this.gameObject);
@@ -41,7 +40,6 @@ namespace Entities
         void Update()
         {
             Travel();
-            // Debug.Log(transform.position.y + " - " + floor.transform.position.y);
             if (transform.position.y <= floor.transform.position.y)
             {
                 OnHitFloor();
