@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1762814, g: 0.220629, b: 0.30295083, a: 1}
+  m_IndirectSpecularColor: {r: 0.17628169, g: 0.22062966, b: 0.302952, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -700,7 +700,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146723273}
-  m_LocalRotation: {x: 0.17657982, y: 1.7093756e-24, z: -3.0666001e-25, w: 0.9842863}
+  m_LocalRotation: {x: 0.17657983, y: -0.000000008468003, z: 0.0000000015191499, w: 0.98428637}
   m_LocalPosition: {x: -0.05909032, y: 1.29, z: -3.575}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5388,7 +5388,6 @@ GameObject:
   m_Component:
   - component: {fileID: 962781834}
   - component: {fileID: 962781836}
-  - component: {fileID: 962781835}
   m_Layer: 0
   m_Name: BombCamera
   m_TagString: Untagged
@@ -5411,14 +5410,6 @@ Transform:
   m_Father: {fileID: 230310215}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &962781835
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 962781833}
-  m_Enabled: 1
 --- !u!20 &962781836
 Camera:
   m_ObjectHideFlags: 0
@@ -5441,7 +5432,7 @@ Camera:
     x: 0
     y: 0
     width: 0.2
-    height: 0.2
+    height: 0.25
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 25.2
@@ -5539,7 +5530,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.17657982, y: 1.7093756e-24, z: -3.0666001e-25, w: 0.9842863}
+  m_LocalRotation: {x: 0.17657983, y: -0.000000008468003, z: 0.0000000015191499, w: 0.98428637}
   m_LocalPosition: {x: -0.05909032, y: 1.29, z: -3.575}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5944,7 +5935,6 @@ RectTransform:
   - {fileID: 1905153200}
   - {fileID: 460125336}
   - {fileID: 1537088186}
-  - {fileID: 1360059018}
   - {fileID: 1682460477}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -7629,17 +7619,17 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360059017}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.7312436}
-  m_LocalScale: {x: 2.1464503, y: 2.1464503, z: 2.1464503}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.36841467, y: 0.51401514, z: 0.45119742}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1058221248}
-  m_RootOrder: 4
+  m_Father: {fileID: 1682460477}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -765, y: -560}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1360059019
 MonoBehaviour:
@@ -9781,17 +9771,18 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682460476}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.7312436}
-  m_LocalScale: {x: 5.82618, y: 4.17585, z: 4.75723}
+  m_LocalPosition: {x: 0, y: 0, z: 1.7312437}
+  m_LocalScale: {x: 5.8261805, y: 4.1758504, z: 4.7572308}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1360059018}
   m_Father: {fileID: 1058221248}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -768, y: -550}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -763, y: 140.6}
+  m_SizeDelta: {x: -1819.9999, y: 96.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1682460478
 MonoBehaviour:

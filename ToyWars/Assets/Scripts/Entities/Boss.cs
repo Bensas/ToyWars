@@ -18,6 +18,8 @@ namespace Entities
         [SerializeField] private List<Transform> _waypoints;
         [SerializeField] private float _forwardShootPrediction = 2.5f;
 
+        [SerializeField] private Transform _targetTransform;
+        
         private Transform target;
 
         private static float SHOOT_THRESHOLD = 0.85f;
@@ -35,7 +37,7 @@ namespace Entities
 
         public void Start()
         {
-            target = GameManager.instance.GetPlayerGlider().transform;
+            target = _targetTransform;
             _lifeController = GetComponent<BossLifeController>();
 
             GameManager.instance.SetBoss(this);
